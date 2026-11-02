@@ -1,5 +1,6 @@
 from html.parser import HTMLParser
 from pathlib import Path
+from urllib.parse import urlsplit
 
 site = Path(__file__).resolve().parent
 
@@ -40,7 +41,12 @@ for link in page.links:
     if link.startswith('#'):
         assert link[1:] in page.ids, f'Missing anchor: {link}'
     elif '://' not in link:
-        assert (site / link).is_file(), f'Missing file: {link}'
+        target = site / urlsplit(link).path
+        assert target.is_file(), f'Missing file: {link}'
+        if urlsplit(link).fragment:
+            linked_page = Page()
+            linked_page.feed(target.read_text(encoding='utf-8'))
+            assert urlsplit(link).fragment in linked_page.ids, f'Missing linked anchor: {link}'
 for file in page.files:
     if '://' not in file:
         assert (site / file).is_file(), f'Missing asset: {file}'
