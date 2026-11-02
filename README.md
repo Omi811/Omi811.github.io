@@ -59,3 +59,5 @@ Browser QA covers desktop, 768px tablet and 375px mobile layouts, gallery bounda
 The portfolio links to five free pilots and optional personal-service offers at https://om-panchal-pilots.hp909145.chatgpt.site/. Commercial offer details and the email-request flow are hosted there. The join flow opens a draft to podcastomi@gmail.com; visitors send it from their own email app. No signup, request database or payment verification is claimed. Every homepage HTML page links to Buy Me a Coffee and the existing UPI QR. `support.html` now uses the portfolio design system and preserves the original QR image and UPI payee details.
 
 Free-pilot access does not require a contribution. Paid work is agreed by email before payment, including scope, total price, timing and cancellation terms. Live payment processing is external; no payment was performed in testing. New page/offer route validation and existing motion regressions pass; fresh browser visual checks are unavailable in this session.
+
+VedaaChari and SEO are the two featured storefront products. FreeLLM Hub, REA and Omsetra each have a tightly scoped INR 499 paid pilot on the linked commercial site.

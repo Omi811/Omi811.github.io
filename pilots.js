@@ -19,6 +19,19 @@
   }
   if (typeof module !== 'undefined' && module.exports) module.exports = {selection,buildRequest,makeMailto};
   if (typeof document === 'undefined') return;
+  const orderProduct = document.getElementById('order-product');
+  if (orderProduct && window.OM_OFFERS) {
+    const id = new URLSearchParams(location.search).get('project');
+    orderProduct.value = ['seo','vedaachari'].includes(id) ? id : 'vedaachari';
+    const updateOrder = () => {
+      const p = window.OM_OFFERS[orderProduct.value];
+      for (const [id,value] of Object.entries({'order-brand':p.name,'order-title':p.paid,'order-price':`₹${p.price}`,'order-scope':p.scope,'order-note':p.note})) document.getElementById(id).textContent=value;
+      document.getElementById('order-request').href=`join.html?project=${p.id}&offer=paid`;
+      document.getElementById('order-payment').href=`support.html?project=${p.id}#qr`;
+    };
+    orderProduct.addEventListener('change',updateOrder);
+    updateOrder();
+  }
   const form = document.getElementById('pilot-form');
   if (form) {
     const project = document.getElementById('project');
