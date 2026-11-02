@@ -22,9 +22,11 @@ Publish this directory's contents at the root of `Omi811/Omi811.github.io`. Keep
 
 ## Design and behavior
 
-- Original orbital canvas artwork; all project visuals are illustrative HTML/CSS compositions.
+- An original titanium sculpture hero, generated with the built-in image generation tool, plus real screenshots of FreeLLM Hub, Omsetra and VedaaChari.
+- Product-page storytelling inspired by the visual hierarchy, large imagery, project highlights and section rhythm of Apple's iPhone product page. No Apple assets or code are included.
 - Responsive desktop and mobile layouts; native anchor navigation and keyboard focus states.
-- Motion pauses off screen and in background tabs, starts paused when reduced motion is preferred, and can be paused manually.
+- Scroll-linked hero movement, a native horizontal highlights gallery, direct gallery selection, keyboard controls, and expandable project details.
+- Reduced-motion preferences disable hero movement; the manual motion control supports other visitors. Scrolling works without animation and content remains visible without JavaScript.
 - No analytics, forms, API keys, client-side dependencies, or backend service. Google Fonts is optional; system fallbacks remain available.
 
 ## Ponytail
@@ -33,5 +35,17 @@ The requested [Ponytail](https://github.com/DietrichGebert/ponytail) is a coding
 
 ## Verification
 
-Run `node --check app.js` and `python check_homepage.py`. Browser QA covers the desktop layout, 390px mobile layout, five project entries, two teasers, anchor destinations, motion pause and resume, and the browser console.
+Run `node --check cinema.js`, `node test_cinema.cjs`, and `python check_homepage.py`. The tests cover gallery boundaries, direct selection, keyboard control, motion pause/resume, reduced-motion defaults, five project entries, two teasers, anchor destinations and local stylesheet/script files.
+
+Browser QA covers desktop, 768px tablet and 375px mobile layouts, gallery boundaries, project detail expansion, touch-target sizes, page overflow, and console errors. Product screenshot text is illustrative of the captured product version, rather than a promise that every advertised service was tested.
+
+## Resources used
+
+- [gstack](https://github.com/garrytan/gstack): design-review guidance for hierarchy, typography, interaction states, responsive design and evidence. The local gstack runner could not start under this Windows session; no automated gstack score is claimed.
+- [REA](https://github.com/morluto/rea): a controlled Chromium browser run against the local homepage with a 375×812 viewport and reduced motion. Navigation completed with no captured page errors. This is a load smoke check; interaction checks were run separately.
+- [free-for-dev](https://github.com/ripienaar/free-for-dev): resource discovery, retaining static hosting and Google Fonts without adding account-based services or paid dependencies.
+
+## Assets
+
+`titanium-knot.webp` is the original generated hero. The three `*-screen.webp` files are screenshots of the public project pages. All four images are optimized WebP files. Source PNGs are retained in the local project folder and are not needed for deployment.
 
