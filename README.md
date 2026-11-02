@@ -26,6 +26,7 @@ Publish this directory's contents at the root of `Omi811/Omi811.github.io`. Keep
 - Product-page storytelling inspired by the visual hierarchy, large imagery, project highlights and section rhythm of Apple's iPhone product page. No Apple assets or code are included.
 - Responsive desktop and mobile layouts; native anchor navigation and keyboard focus states.
 - Scroll-linked hero movement, a native horizontal highlights gallery, direct gallery selection, keyboard controls, and expandable project details.
+- Cinematic scroll motion: gentle hero rotation, product screens that settle from a subtle perspective tilt, one-time heading entrances, section edge blends, a reading-progress line, and contextual chapter names. Mobile uses smaller travel and tilt, native touch scrolling and gallery snap stops. Visible sections alone are measured in a single animation frame per scroll update; there is no continuous rendering loop or scroll interception.
 - Reduced-motion preferences disable hero movement; the manual motion control supports other visitors. Scrolling works without animation and content remains visible without JavaScript.
 - No analytics, forms, API keys, client-side dependencies, or backend service. Google Fonts is optional; system fallbacks remain available.
 
@@ -36,6 +37,8 @@ The requested [Ponytail](https://github.com/DietrichGebert/ponytail) is a coding
 ## Verification
 
 Run `node --check cinema.js`, `node test_cinema.cjs`, and `python check_homepage.py`. The tests cover gallery boundaries, direct selection, keyboard control, motion pause/resume, reduced-motion defaults, five project entries, two teasers, anchor destinations and local stylesheet/script files.
+
+Run `node --check scroll-motion.js` and `node test_scroll.cjs` for the added motion layer. Its tests cover viewport-based product motion, chapter names, entrance cancellation, reduced-motion defaults and gentler mobile motion. The Pause motion control also cancels in-flight heading entrances and restores static product visuals.
 
 Browser QA covers desktop, 768px tablet and 375px mobile layouts, gallery boundaries, project detail expansion, touch-target sizes, page overflow, and console errors. Product screenshot text is illustrative of the captured product version, rather than a promise that every advertised service was tested.
 

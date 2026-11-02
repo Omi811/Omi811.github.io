@@ -1,0 +1,19 @@
+/* Content stays visible before scripts load and when motion is disabled. */
+.local-nav:after{content:'';position:absolute;height:2px;bottom:-1px;left:0;right:0;background:#efbfa0;transform:scaleX(var(--page-progress,0));transform-origin:left;pointer-events:none}
+.local-descriptor{min-width:142px;text-align:right;transition:color .3s ease}
+.project{position:relative;perspective:1600px;isolation:isolate}
+.project:before{content:'';position:absolute;top:0;left:0;right:0;height:90px;pointer-events:none;z-index:-1;background:linear-gradient(180deg,#ffffff06,transparent)}
+.project-finance:before{background:linear-gradient(180deg,#dedfd966,transparent)}
+.project-vedaa:before{background:linear-gradient(180deg,#2b202e99,transparent)}
+.product-display{transform:translate3d(0,var(--display-y,0px),0) rotateX(var(--display-tilt,0deg)) scale(var(--display-scale,1));transform-origin:50% 15%;backface-visibility:hidden}
+.hero-sculpture{transform:rotate(var(--sculpture-turn,0deg));transform-origin:50% 54%}
+.system-copy summary>span{transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.system-copy details[open] p{animation:detail-arrive .35s ease-out}
+.highlight-card{transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.motion-paused .product-display,.motion-paused .hero-sculpture,.motion-paused .hero-stage,.motion-paused .highlight-card:hover{transform:none!important}
+.motion-paused .system-copy details p{animation:none}
+.motion-paused .highlight-track,html:has(body.motion-paused){scroll-behavior:auto}
+@keyframes detail-arrive{from{opacity:.6;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+@media(hover:hover) and (pointer:fine){.highlight-card:hover{transform:translateY(-4px)}.text-link span,.pill span{transition:transform .25s ease}.text-link:hover span,.pill:hover span{transform:translate(2px,-2px)}}
+@media(max-width:700px){.project{perspective:1200px}.local-nav:after{height:1.5px}.product-display{transform-origin:50% 25%}.highlight-track{scroll-padding-left:0;scroll-snap-stop:normal}.highlight-card{scroll-snap-stop:always}.project:before{height:50px}}
+@media(prefers-reduced-motion:reduce){.product-display,.hero-sculpture{transform:none!important}.system-copy details p{animation:none}.highlight-card,.local-descriptor,.system-copy summary>span{transition:none}.local-nav:after{transition:none}}
