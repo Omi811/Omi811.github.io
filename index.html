@@ -1,377 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Support Om Panchal ☕ | Buy Me a Coffee &amp; UPI</title>
-  <meta name="description" content="Support Om Panchal's developer tooling, serverless AI workstations, and financial systems via Buy Me A Coffee or direct UPI.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #090d16;
-      --card-bg: rgba(17, 24, 39, 0.9);
-      --border: #1e293b;
-      --border-focus: #f59e0b;
-      --accent: #38bdf8;
-      --accent-green: #10b981;
-      --accent-yellow: #f59e0b;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: radial-gradient(circle at 50% 0%, #1e293b 0%, var(--bg) 65%);
-      color: var(--text-main);
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px 60px 20px;
-    }
-    .main-wrapper { max-width: 600px; width: 100%; }
-    
-    /* Profile Header */
-    .profile-card { text-align: center; margin-bottom: 24px; }
-    .avatar-wrapper { position: relative; width: 84px; height: 84px; margin: 0 auto 14px auto; }
-    .avatar {
-      width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
-      border: 2px solid var(--border-focus);
-      box-shadow: 0 0 25px rgba(245, 158, 11, 0.25);
-    }
-    .status-badge {
-      position: absolute; bottom: 2px; right: 2px;
-      background: #10b981; width: 16px; height: 16px;
-      border-radius: 50%; border: 3px solid var(--bg);
-    }
-    h1 { font-size: 27px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 4px; }
-    .role-title {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px; color: var(--accent); margin-bottom: 10px; display: inline-block;
-    }
-    p.bio {
-      font-size: 14.5px; color: var(--text-muted); line-height: 1.6; max-width: 500px; margin: 0 auto;
-    }
-
-    /* Main Patronage Card */
-    .patron-card {
-      background: var(--card-bg);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 30px 26px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      margin-bottom: 24px;
-    }
-
-    /* Tabs */
-    .tab-header {
-      display: flex; gap: 8px; margin-bottom: 20px;
-      border-bottom: 1px solid var(--border); padding-bottom: 8px;
-    }
-    .tab-btn {
-      flex: 1; background: none; border: none; color: var(--text-muted);
-      font-size: 13.5px; font-weight: 700; padding: 10px 14px; border-radius: 10px;
-      cursor: pointer; transition: all 0.2s; text-align: center;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-    }
-    .tab-btn:hover { color: var(--text-main); background: rgba(255, 255, 255, 0.04); }
-    .tab-btn.active {
-      color: #0f172a; background: var(--accent-yellow);
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
-    }
-    .tab-btn.active.upi-active {
-      background: #10b981; color: #042f2e;
-      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-    }
-
-    /* Tier Selector */
-    .tier-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px;
-    }
-    .tier-btn {
-      background: rgba(30, 41, 59, 0.5); border: 1px solid var(--border);
-      border-radius: 12px; padding: 14px 6px; cursor: pointer; text-align: center;
-      transition: all 0.2s ease; color: var(--text-main); position: relative;
-    }
-    .tier-btn:hover {
-      border-color: rgba(245, 158, 11, 0.5); background: rgba(245, 158, 11, 0.08); transform: translateY(-2px);
-    }
-    .tier-btn.active {
-      border-color: var(--accent-yellow); background: rgba(245, 158, 11, 0.12);
-      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.15);
-    }
-    .tier-btn .popular-tag {
-      position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
-      background: var(--accent-yellow); color: #0f172a; font-size: 9px;
-      font-weight: 800; padding: 2px 7px; border-radius: 100px; text-transform: uppercase;
-    }
-    .tier-btn .cups { font-size: 19px; font-weight: 800; display: block; margin-bottom: 3px; }
-    .tier-btn .price { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--accent-yellow); font-weight: 600; }
-
-    /* Form Fields */
-    .input-group { margin-bottom: 14px; text-align: left; }
-    .input-group label {
-      display: block; font-size: 11.5px; font-weight: 600; color: var(--text-muted);
-      margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase;
-    }
-    .input-control {
-      width: 100%; background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border);
-      border-radius: 10px; padding: 12px 14px; color: var(--text-main); font-family: inherit; font-size: 14px;
-    }
-    .input-control:focus { outline: none; border-color: var(--accent-yellow); }
-    textarea.input-control { resize: vertical; min-height: 65px; }
-
-    /* Buttons */
-    .btn-checkout {
-      width: 100%; background: linear-gradient(135deg, #f59e0b, #d97706);
-      color: #0f172a; border: none; border-radius: 12px; padding: 16px;
-      font-size: 15.5px; font-weight: 800; cursor: pointer; display: flex;
-      align-items: center; justify-content: center; gap: 10px; transition: all 0.2s ease;
-      text-decoration: none; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3); margin-top: 10px;
-    }
-    .btn-checkout:hover {
-      background: linear-gradient(135deg, #fbbf24, #f59e0b); transform: translateY(-2px);
-    }
-
-    /* UPI Showcase View */
-    .upi-container { display: none; text-align: center; }
-    .upi-container.show { display: block; animation: fadeIn 0.3s ease; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-
-    .qr-card {
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 16px;
-      display: inline-block;
-      margin: 10px auto 18px auto;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-      border: 3px solid #10b981;
-      max-width: 270px;
-    }
-    .qr-card img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 8px;
-    }
-    .payee-name {
-      font-size: 16px; font-weight: 800; color: #f8fafc; margin-bottom: 4px;
-    }
-    .upi-badge-row {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(30, 41, 59, 0.8); border: 1px solid #10b981;
-      padding: 10px 18px; border-radius: 10px; margin-bottom: 14px;
-    }
-    .upi-id-text {
-      font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 700; color: #34d399;
-    }
-    .btn-copy {
-      background: #10b981; color: #042f2e; border: none; border-radius: 6px;
-      padding: 6px 12px; font-size: 12px; font-weight: 800; cursor: pointer; transition: all 0.2s;
-    }
-    .btn-copy:hover { background: #34d399; }
-    .upi-apps-row {
-      display: flex; justify-content: center; gap: 10px; margin-top: 10px; flex-wrap: wrap;
-    }
-    .app-pill {
-      font-size: 11.5px; font-weight: 600; padding: 4px 10px; border-radius: 6px;
-      background: rgba(255, 255, 255, 0.06); color: var(--text-muted); border: 1px solid var(--border);
-    }
-    .btn-upi-intent {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      width: 100%; background: #10b981; color: #042f2e; text-decoration: none;
-      font-weight: 800; font-size: 15px; padding: 14px; border-radius: 12px;
-      margin-top: 16px; transition: all 0.2s;
-    }
-    .btn-upi-intent:hover { background: #34d399; transform: translateY(-1px); }
-
-    /* Impact Section */
-    .impact-section {
-      background: var(--card-bg); border: 1px solid var(--border);
-      border-radius: 20px; padding: 24px; margin-bottom: 24px;
-    }
-    .impact-section h2 {
-      font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 14px;
-      text-transform: uppercase; letter-spacing: 0.8px; font-family: 'JetBrains Mono', monospace;
-    }
-    .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .project-item {
-      background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 10px; padding: 12px; text-decoration: none; color: inherit; transition: all 0.2s;
-    }
-    .project-item:hover {
-      border-color: var(--accent); background: rgba(56, 189, 248, 0.05); transform: translateY(-1px);
-    }
-    .project-item .name { font-weight: 700; font-size: 13.5px; margin-bottom: 3px; }
-    .project-item .desc { font-size: 11.5px; color: var(--text-muted); line-height: 1.4; }
-
-    footer { text-align: center; font-size: 13px; color: var(--text-muted); }
-    footer a { color: var(--accent); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-  </style>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#10100f">
+  <title>Om Panchal — Independent engineer. Expansive ideas.</title>
+  <meta name="description" content="The independent work of Om Panchal: FreeLLM Hub, Omsetra, VedaaChari, REA Developer Ecosystem and Universal SEO Agent Suite. Explore the projects and what comes next.">
+  <link rel="canonical" href="https://omi811.github.io/">
+  <meta property="og:title" content="Om Panchal — Engineering the extraordinary."><meta property="og:description" content="Five projects. One restless curiosity. Independent software, AI systems and ideas taking shape."><meta property="og:type" content="website"><meta property="og:url" content="https://omi811.github.io/"><meta property="og:image" content="https://omi811.github.io/social.svg">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"><script src="app.js" defer></script>
 </head>
 <body>
+  <a class="skip" href="#work">Skip to projects</a>
+  <div class="progress" aria-hidden="true"></div>
+  <header class="header"><a class="wordmark" href="#home" aria-label="Om Panchal home">om<span class="wordmark-dot">.</span><span class="wordmark-name">PANCHAL</span></a><nav aria-label="Main navigation"><a href="#work">Selected work <sup>05</sup></a><a href="#next">On the horizon</a><a class="nav-contact" href="#connect">Let’s connect <span>↗</span></a></nav></header>
+  <main>
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-art" aria-hidden="true"><div class="orbit-glow"></div><canvas id="orbit"></canvas><div class="orbital-center"></div><span class="orbit-coordinate coordinate-top">A FIELD OF POSSIBILITIES</span><span class="orbit-coordinate coordinate-bottom">IDEA → SYSTEM → EXPERIENCE</span></div>
+      <div class="hero-copy"><p class="eyebrow"><span class="signal"></span> INDEPENDENT ENGINEER &amp; BUILDER</p><h1 id="hero-title">Engineering<br>the <em>extraordinary.</em></h1><p class="hero-description">I’m Om Panchal. I turn ambitious ideas into thoughtful software. Across AI, finance, and the spaces in between.</p><a class="button" href="#work">Enter the collection <span>↘</span></a></div>
+      <div class="hero-bottom"><span>OM PANCHAL <span class="muted">/</span> OMI811</span><a href="#work">SCROLL TO EXPLORE <span>↓</span></a><button id="motion-toggle" type="button" aria-pressed="false">Pause motion <span>Ⅱ</span></button></div>
+    </section>
 
-  <div class="main-wrapper">
-    <!-- Profile Header -->
-    <div class="profile-card">
-      <div class="avatar-wrapper">
-        <img class="avatar" src="https://avatars.githubusercontent.com/u/115568999?v=4" alt="Om Panchal">
-        <div class="status-badge" title="Active Builder"></div>
+    <section class="intro section-shell" aria-labelledby="intro-title"><p class="eyebrow">01 / THE PRACTICE</p><div><h2 id="intro-title">Different worlds.<br><em>The same curiosity.</em></h2><p>From a browser that becomes an AI workstation to a workspace that makes business payments clearer. I build tools that bring complex systems closer to the people using them.</p><div class="disciplines"><span>AI &amp; AGENT SYSTEMS</span><span>FULL-STACK ENGINEERING</span><span>SERVERLESS SOFTWARE</span></div></div></section>
+
+    <section id="work" class="work section-shell" aria-labelledby="work-title">
+      <div class="section-heading"><div><p class="eyebrow">02 / SELECTED WORK</p><h2 id="work-title">Ideas, <em>made real.</em></h2></div><span class="catalogue">THE COLLECTION / 01—05</span></div>
+
+      <article class="project project-free" id="freellm"><div class="project-info"><div class="project-meta"><span>01 / AI WORKSTATION</span><span class="status">PUBLIC PROJECT</span></div><h3>FreeLLM Hub<span>Intelligence.<br><em>Without the walls.</em></span></h3><p>A browser-based workspace for AI conversations, interactive code artifacts, and side-by-side model exploration. Your tools, in one place.</p><div class="tags"><span>CLIENT-SIDE</span><span>MULTI-MODEL</span><span>ARTIFACTS</span></div><div class="project-links"><a href="https://omi811.github.io/freellm-hub/" target="_blank" rel="noopener noreferrer">Open workstation <span>↗</span></a><a class="source" href="https://github.com/Omi811/freellm-hub" target="_blank" rel="noopener noreferrer">Source ↗</a></div></div><div class="project-visual free-visual" role="img" aria-label="Illustration of an AI workspace with conversation and a live artifact canvas"><div class="visual-label">AN OPEN CANVAS FOR YOUR NEXT IDEA</div><div class="browser-window"><div class="window-top"><i></i><i></i><i></i><span>FreeLLM Hub / workspace</span></div><div class="workspace"><div class="workspace-sidebar"><b>F<span>↗</span></b><span>＋ New conversation</span><small>YOUR WORKSPACE</small><span>Exploring possibilities</span><span>Something worth building</span></div><div class="workspace-chat"><span class="tiny-label">LET’S MAKE SOMETHING.</span><p>What if an idea<br>could become <em>anything?</em></p><div class="chat-line"></div><div class="chat-line short"></div><div class="prompt">Imagine. Build. Iterate.<span>↑</span></div></div><div class="artifact"><div class="artifact-orbit"></div><span>IDEA NO. 001</span></div></div></div><span class="visual-footnote">WORKSPACE CONCEPT / ILLUSTRATION</span></div></article>
+
+      <article class="project project-omsetra" id="omsetra"><div class="project-info"><div class="project-meta"><span>02 / FINANCIAL SOFTWARE</span><span class="status">EARLY ACCESS</span></div><h3>Omsetra<span>From complexity<br><em>to clarity.</em></span></h3><p>A reconciliation and collections workspace for Indian founders, small businesses, and accountants. Review records, explore matches, and see the bigger picture.</p><div class="tags"><span>RECONCILIATION</span><span>INDIA SME</span><span>NEXT.JS</span></div><div class="project-links"><a href="https://astrobharat-studio.hp909145.chatgpt.site/demo" target="_blank" rel="noopener noreferrer">Explore the demo <span>↗</span></a><a class="source" href="https://github.com/Omi811/omsetra" target="_blank" rel="noopener noreferrer">Repository ↗</a></div><small class="project-note">Demo uses fictional data. Live payments are not enabled.</small></div><div class="project-visual finance-visual" role="img" aria-label="Concept illustration of financial records coming into alignment"><div class="visual-label">A CLEARER PICTURE OF BUSINESS</div><div class="ledger"><div class="ledger-title"><span class="omsetra-symbol">◈</span> omsetra <span>DEMO LEDGER</span></div><div class="ledger-main"><span>Everything, in perspective.</span><strong>Clarity <em>counts.</em></strong><div class="ledger-chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="ledger-row"><span>Invoice records</span><span class="match">↗ Review matches</span></div><div class="ledger-row"><span>Statement imports</span><span>Ready to explore</span></div></div></div><span class="visual-footnote">PRODUCT CONCEPT / ILLUSTRATION</span></div></article>
+
+      <article class="project project-vedaa" id="vedaachari"><div class="project-info"><div class="project-meta"><span>03 / ASTRONOMICAL COMPUTATION</span><span class="status">PUBLIC PLATFORM</span></div><h3>VedaaChari<span>Ancient patterns.<br><em>A new perspective.</em></span></h3><p>Vedic astrology and personal reflection, shaped by astronomical computation. Explore sidereal birth charts, Dasha periods, and the Panchang.</p><div class="tags"><span>CLOUDFLARE WORKERS</span><span>ASTRONOMY</span><span>REFLECTION</span></div><div class="project-links"><a href="https://vedaachari.ompanchal.workers.dev" target="_blank" rel="noopener noreferrer">Discover VedaaChari <span>↗</span></a><a class="source" href="https://vedaachari.ompanchal.workers.dev/report-demo" target="_blank" rel="noopener noreferrer">Sample report ↗</a></div></div><div class="project-visual vedaa-visual" role="img" aria-label="An original celestial chart illustration with concentric gold orbits"><div class="visual-label">AS ABOVE, A NEW WAY FORWARD</div><div class="celestial"><div class="celestial-axis"></div><div class="celestial-ring ring-one"></div><div class="celestial-ring ring-two"></div><div class="celestial-ring ring-three"></div><div class="celestial-diamond"></div><div class="celestial-sun">✺</div><span class="star star-a">✦</span><span class="star star-b">✧</span><span class="star star-c">✦</span><span class="celestial-caption">VEDAACHARI<br><small>THE ART OF LOOKING INWARD</small></span></div><span class="visual-footnote">CELESTIAL STUDY / ILLUSTRATION</span></div></article>
+
+      <div class="systems-heading"><p class="eyebrow">BEHIND THE EXPERIENCE</p><h3>The systems that<br><em>move things forward.</em></h3></div>
+      <div class="system-grid">
+        <article class="system-card rea-card"><div class="project-meta"><span>04 / DEVELOPER INFRASTRUCTURE</span><span>↗</span></div><div class="node-diagram" aria-hidden="true"><span class="node n1">CONTEXT</span><span class="node n2">INTERFACE</span><span class="node n3">INTELLIGENCE</span><span class="node n4">AUDIT</span><span class="node-core">REA</span></div><h3>REA Developer Ecosystem</h3><p>Architecture blueprints and reference MCP servers. Connecting context, interfaces, and code intelligence into an AI engineering ecosystem.</p><a href="https://github.com/Omi811/rea-developer-ecosystem" target="_blank" rel="noopener noreferrer">Explore the ecosystem <span>↗</span></a></article>
+        <article class="system-card seo-card"><div class="project-meta"><span>05 / SEARCH &amp; DISCOVERY</span><span>↗</span></div><div class="search-diagram" aria-hidden="true"><div class="search-orbit"></div><span class="search-center">✳</span><span class="search-point p1">SEARCH</span><span class="search-point p2">AI ANSWERS</span><span class="search-point p3">DISCOVERY</span></div><h3>Universal SEO Agent Suite</h3><p>Cross-platform SEO and AI search auditing tools for Codex, Claude Code, and Antigravity. Make the work easier to discover.</p><a href="https://github.com/Omi811/universal-seo-agent-suite" target="_blank" rel="noopener noreferrer">Discover the suite <span>↗</span></a></article>
       </div>
-      <h1>Om Panchal</h1>
-      <span class="role-title">Full-Stack &amp; Systems Engineer</span>
-      <p class="bio">
-        Engineering serverless developer tooling (FreeLLM Hub), Model Context Protocol (MCP) systems, and financial platforms (Omsetra).
-      </p>
-    </div>
+    </section>
 
-    <!-- Main Patronage Card -->
-    <div class="patron-card">
-      
-      <!-- Payment Mode Tabs -->
-      <div class="tab-header">
-        <button id="tabGlobal" class="tab-btn active" onclick="switchTab('global')">
-          <span>⚡ Global (BuyMeACoffee)</span>
-        </button>
-        <button id="tabUpi" class="tab-btn" onclick="switchTab('upi')">
-          <span>📱 India / UPI Scanner</span>
-        </button>
-      </div>
+    <section id="next" class="next section-shell" aria-labelledby="next-title"><div class="section-heading"><div><p class="eyebrow">03 / ON THE HORIZON</p><h2 id="next-title">The next <em>chapter.</em></h2></div><p class="next-caption">A glimpse at the ideas taking shape.<br>Details will follow when they’re ready.</p></div><div class="next-grid"><article class="teaser architecture"><div class="blueprint" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><span>FORM / SPACE / POSSIBILITY</span></div><div class="teaser-copy"><p class="eyebrow">IN DEVELOPMENT / 01</p><h3>Architecture,<br><em>reimagined.</em></h3><p>A new project exploring the world of architecture.</p><span class="coming">COMING NEXT <span>↗</span></span></div></article><article class="teaser trading"><svg class="market-lines" viewBox="0 0 600 230" fill="none" aria-hidden="true"><path d="M0 195L40 170L70 185L105 115L140 145L185 90L220 113L255 80L295 125L330 65L365 83L405 40L440 75L485 20L520 48L560 10L600 38"/><path d="M0 210L60 200L110 185L160 195L210 155L270 165L320 130L370 140L420 105L480 120L540 85L600 70"/></svg><div class="teaser-copy"><p class="eyebrow">IN DEVELOPMENT / 02</p><h3>Markets.<br><em>A fresh lens.</em></h3><p>A stock trading project. A new direction to explore.</p><span class="coming">COMING NEXT <span>↗</span></span></div></article></div></section>
 
-      <!-- Global View -->
-      <div id="globalPanel">
-        <!-- Coffee Amount Selector -->
-        <div class="tier-grid">
-          <div class="tier-btn" onclick="selectTier(1, 3, this)">
-            <span class="cups">☕ × 1</span>
-            <span class="price">$3 / ₹250</span>
-          </div>
-          <div class="tier-btn active" onclick="selectTier(3, 9, this)">
-            <span class="popular-tag">Popular</span>
-            <span class="cups">☕ × 3</span>
-            <span class="price">$9 / ₹750</span>
-          </div>
-          <div class="tier-btn" onclick="selectTier(5, 15, this)">
-            <span class="cups">☕ × 5</span>
-            <span class="price">$15 / ₹1,250</span>
-          </div>
-        </div>
-
-        <div class="input-group">
-          <label for="supporterName">Name or @handle (Optional)</label>
-          <input type="text" id="supporterName" class="input-control" placeholder="Your name or Twitter / GitHub handle">
-        </div>
-
-        <div class="input-group">
-          <label for="supporterMsg">Message (Optional)</label>
-          <textarea id="supporterMsg" class="input-control" placeholder="Say something nice or request a feature..."></textarea>
-        </div>
-
-        <a id="checkoutBtn" href="https://buymeacoffee.com/panchalom1w" target="_blank" class="btn-checkout">
-          <span>⚡ Support on Buy Me A Coffee</span>
-        </a>
-      </div>
-
-      <!-- UPI Panel -->
-      <div id="upiPanel" class="upi-container">
-        <div class="qr-card">
-          <img src="upi-qr.png" alt="Scan to pay via UPI (Om Narendra Panchal)" />
-        </div>
-
-        <div class="payee-name">OM NARENDRA PANCHAL</div>
-        
-        <div class="upi-badge-row">
-          <span id="upiId" class="upi-id-text">8104235964@naviaxis</span>
-          <button class="btn-copy" onclick="copyUpi()">Copy</button>
-        </div>
-        
-        <p id="copyAlert" style="font-size: 12px; color: #34d399; font-weight: 600; margin-bottom: 10px; display: none;">
-          ✓ UPI ID copied to clipboard!
-        </p>
-
-        <a href="upi://pay?pa=8104235964@naviaxis&pn=Om%20Narendra%20Panchal&cu=INR" class="btn-upi-intent">
-          <span>Open in UPI App (GPay / PhonePe / Paytm / Navi)</span>
-        </a>
-
-        <div class="upi-apps-row">
-          <span class="app-pill">Google Pay</span>
-          <span class="app-pill">PhonePe</span>
-          <span class="app-pill">Paytm</span>
-          <span class="app-pill">Navi</span>
-          <span class="app-pill">BHIM</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- What Your Support Fuels -->
-    <div class="impact-section">
-      <h2>What Your Contribution Fuels</h2>
-      <div class="project-grid">
-        <a href="https://omi811.github.io/freellm-hub/" class="project-item">
-          <div class="name">⚡ FreeLLM Hub</div>
-          <div class="desc">100% free serverless multi-model workstation with artifacts.</div>
-        </a>
-        <a href="https://github.com/Omi811/omsetra" class="project-item">
-          <div class="name">💼 Omsetra</div>
-          <div class="desc">Financial reconciliation engine for Indian SMEs.</div>
-        </a>
-        <a href="https://vedaachari.ompanchal.workers.dev" class="project-item">
-          <div class="name">🔮 VedaaChari</div>
-          <div class="desc">Vedic astronomy computation platform on Cloudflare.</div>
-        </a>
-        <a href="https://github.com/Omi811/rea-developer-ecosystem" class="project-item">
-          <div class="name">🤖 REA Ecosystem</div>
-          <div class="desc">Model Context Protocol (MCP) servers &amp; agent blueprints.</div>
-        </a>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-      <p>
-        Crafted by <a href="https://github.com/Omi811">Om Panchal (@Omi811)</a> · <a href="https://buymeacoffee.com/panchalom1w">BuyMeACoffee Profile</a>
-      </p>
-    </footer>
-  </div>
-
-  <script>
-    function selectTier(qty, price, el) {
-      document.querySelectorAll('.tier-btn').forEach(b => b.classList.remove('active'));
-      el.classList.add('active');
-    }
-
-    function switchTab(mode) {
-      const tabGlobal = document.getElementById('tabGlobal');
-      const tabUpi = document.getElementById('tabUpi');
-      const globalPanel = document.getElementById('globalPanel');
-      const upiPanel = document.getElementById('upiPanel');
-
-      if (mode === 'upi') {
-        tabGlobal.classList.remove('active');
-        tabUpi.classList.add('active', 'upi-active');
-        globalPanel.style.display = 'none';
-        upiPanel.classList.add('show');
-      } else {
-        tabUpi.classList.remove('active', 'upi-active');
-        tabGlobal.classList.add('active');
-        globalPanel.style.display = 'block';
-        upiPanel.classList.remove('show');
-      }
-    }
-
-    function copyUpi() {
-      const upi = document.getElementById('upiId').innerText;
-      navigator.clipboard.writeText(upi).then(() => {
-        const alert = document.getElementById('copyAlert');
-        alert.style.display = 'block';
-        setTimeout(() => alert.style.display = 'none', 2500);
-      });
-    }
-  </script>
+    <section id="connect" class="connect section-shell" aria-labelledby="connect-title"><p class="eyebrow">04 / KEEP THE CURIOSITY GOING</p><h2 id="connect-title">Good things start<br>with <em>a conversation.</em></h2><div class="connect-bottom"><p>Follow the work, explore the code,<br>or help fuel the next idea.</p><div><a class="button" href="https://github.com/Omi811" target="_blank" rel="noopener noreferrer">Find me on GitHub <span>↗</span></a><a class="support-link" href="support.html">Support independent work ↗</a></div></div><div class="signature" aria-hidden="true">om panchal<span>↗</span></div></section>
+  </main>
+  <footer class="footer"><span>© <span id="year">2026</span> OM PANCHAL</span><span>INDEPENDENT MIND. ENDLESS POSSIBILITIES.</span><a href="#home">BACK TO TOP ↑</a></footer>
 </body>
 </html>
+
