@@ -33,4 +33,5 @@ The requested [Ponytail](https://github.com/DietrichGebert/ponytail) is a coding
 
 ## Verification
 
-Run `node --check app.js` and `python ../../work/check_homepage.py`. Browser QA covers the desktop layout, 390px mobile layout, five project entries, two teasers, anchor destinations, motion pause and resume, and the browser console.
+Run `node --check app.js` and `python check_homepage.py`. Browser QA covers the desktop layout, 390px mobile layout, five project entries, two teasers, anchor destinations, motion pause and resume, and the browser console.
+
