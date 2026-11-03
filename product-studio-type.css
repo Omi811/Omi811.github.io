@@ -1,5 +1,5 @@
 *{box-sizing:border-box}
-:root{color:#1d1d1f;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;scroll-behavior:smooth}
+:root{color:#1d1d1f;background:#fff;font-family:Hind,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;scroll-behavior:smooth}
 body,figure,p,h1,h2,h3,dl,dd{margin:0}
 a{color:inherit;text-underline-offset:.2em}
 a:focus-visible{outline:3px solid #0071e3;outline-offset:4px}
@@ -15,7 +15,8 @@ a:focus-visible{outline:3px solid #0071e3;outline-offset:4px}
 .brand{font-weight:700;letter-spacing:-.035em}
 .nav-links{font-size:.83rem;color:#3f3f44}
 .intro{text-align:center;padding:44px 0 26px}
-h1{font-size:clamp(2.8rem,6vw,5.1rem);line-height:1.02;letter-spacing:-.065em}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600}
+h1{font-size:clamp(2.8rem,6vw,5.1rem);line-height:1.06;letter-spacing:-.048em}
 .intro p{color:#55555a;margin-top:11px;font-size:clamp(1rem,2vw,1.35rem)}
 .product-nav,.actions{justify-content:center}
 .product-nav{margin-top:14px;font-size:.86rem}
@@ -28,7 +29,7 @@ h1{font-size:clamp(2.8rem,6vw,5.1rem);line-height:1.02;letter-spacing:-.065em}
 .omsetra{--ink:#edfff4;--field:#112522;--rim:#ffffff24}
 .product-copy{max-width:760px;margin-inline:auto}
 .product-name{font-size:clamp(.98rem,2vw,1.25rem);font-weight:700;margin-bottom:9px}
-h2{font-size:clamp(2.25rem,5.5vw,4.65rem);font-weight:700;letter-spacing:-.058em;line-height:1.04;text-wrap:balance}
+h2{font-size:clamp(2.25rem,5.5vw,4.65rem);letter-spacing:-.046em;line-height:1.08;text-wrap:balance}
 .product-intro{font-size:clamp(1rem,2.2vw,1.35rem);line-height:1.43;max-width:48ch;margin:13px auto 0;text-wrap:pretty}
 .offer{font-size:.88rem;margin:14px 0 0;opacity:.83}
 .actions{margin-top:17px;gap:8px 12px}
@@ -51,6 +52,9 @@ h2{font-size:clamp(2.25rem,5.5vw,4.65rem);font-weight:700;letter-spacing:-.058em
 .band p,.support p{margin:12px 0;color:#45454b;line-height:1.5}
 .next-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
 .teaser{background:#f5f5f7;padding:24px;border-radius:16px}
+.build-label{font-size:.88rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+.build-story>p:not(.build-label){max-width:69ch}
+.build-story>.offer-link{margin-top:12px}
 footer{background:#f5f5f7}
 .support{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;padding:40px 0}
 .payment{display:flex;align-items:center;gap:16px;max-width:100%}
@@ -86,3 +90,4 @@ footer{background:#f5f5f7}
   }
 }
 @media(prefers-reduced-motion:reduce){:root{scroll-behavior:auto}}
+.build-card{background:#f5f5f7;padding:24px;border-radius:16px}
