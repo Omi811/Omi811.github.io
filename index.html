@@ -11,6 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500..700&amp;family=Hind:wght@400;500;600;700&amp;display=swap">
   <link rel="stylesheet" href="product-studio-type.css">
+  <link rel="stylesheet" href="studio-notes.css">
+  <script type="module" src="studio-notes.mjs"></script>
 </head>
 <body id="home">
   <a class="skip" href="#work">Skip to products</a>
@@ -86,12 +88,50 @@
     <section class="band wrap build-story" id="build" aria-labelledby="build-title">
       <p class="build-label">Studio notes</p>
       <h2 id="build-title">One studio. Five things built.</h2>
-      <p>I built these products one real problem at a time: reading a chart, finding a search obstacle, comparing model responses, tracing a tool call, or matching a refund to a payout. Each has a focused pilot so you can bring a concrete example and see what it does.</p>
+      <p>My approach is to start with a task someone can bring me, then make the steps visible enough to check together. That’s how a chart becomes an explanation, a search audit becomes a fix, and a payout becomes a trail someone can follow.</p>
+      <div class="build-grid">
+        <article class="build-card" data-build-note>
+          <p class="build-kicker">01 / VedaaChari</p>
+          <h3>Make a chart easier to read.</h3>
+          <p>I built a Vedic chart experience for personal reflection and a separate Sun &amp; Moon companion for five Indian cities.</p>
+          <dl><dt>Under the hood</dt><dd>Next.js on Cloudflare Workers for the chart experience. The companion uses JavaScript and U.S. Naval Observatory data for local rise and set times.</dd><dt>My design choice</dt><dd>I separated measured sky events from chart interpretation, and paired Fraunces with Hind so the site has a distinct voice and room for Devanagari.</dd></dl>
+          <div class="build-links"><a href="https://vedaachari.ompanchal.workers.dev/">Live app ↗</a><a href="https://aa.usno.navy.mil/data/api">USNO data source ↗</a></div>
+        </article>
+        <article class="build-card" data-build-note>
+          <p class="build-kicker">02 / Universal SEO Agent Suite</p>
+          <h3>Turn a finding into a fix.</h3>
+          <p>I built workflows for search and AI discovery, plus a first-pass checker that inspects pasted HTML right in the browser.</p>
+          <dl><dt>Under the hood</dt><dd>The Python-led suite includes workflows for Codex, Claude Code and Antigravity. The browser checker uses JavaScript and offers a Google PageSpeed Insights report.</dd><dt>My design choice</dt><dd>I start with one public page, one documented obstacle and one proposed correction. If PageSpeed runs out of quota, the checker gives you the official report link.</dd></dl>
+          <div class="build-links"><a href="https://github.com/Omi811/universal-seo-agent-suite">SEO suite source ↗</a><a href="https://github.com/morluto/rea">REA reference ↗</a></div>
+        </article>
+        <article class="build-card" data-build-note>
+          <p class="build-kicker">03 / FreeLLM Hub</p>
+          <h3>Keep the prompt, change the model.</h3>
+          <p>I built a trial workspace for model conversations and interactive artifacts, with provider and local gateway options.</p>
+          <dl><dt>Under the hood</dt><dd>A JavaScript app on GitHub Pages with streamed responses, OpenRouter support and local backends such as Ollama.</dd><dt>My design choice</dt><dd>I kept provider choice with the user so the same task can move between models. The trial makes provider limits and potential charges clear.</dd></dl>
+          <div class="build-links"><a href="https://github.com/Omi811/freellm-hub">FreeLLM Hub source ↗</a></div>
+        </article>
+        <article class="build-card" data-build-note>
+          <p class="build-kicker">04 / REA Developer Ecosystem</p>
+          <h3>Trace the tool call.</h3>
+          <p>I put together architecture notes, reference MCP servers and deployment blueprints covering ReUI, Lighthouse, Context7 and Infimium.</p>
+          <dl><dt>Under the hood</dt><dd>TypeScript and the Model Context Protocol, with the upstream REA project as the reconstruction reference.</dd><dt>My design choice</dt><dd>I explain integrations as a route through a repository: find the entry point, follow the call and identify the permission it needs.</dd></dl>
+          <div class="build-links"><a href="https://github.com/Omi811/rea-developer-ecosystem">REA ecosystem source ↗</a><a href="https://github.com/morluto/rea">Upstream REA ↗</a></div>
+        </article>
+        <article class="build-card" data-build-note>
+          <p class="build-kicker">05 / Omsetra</p>
+          <h3>Give every payout a trail.</h3>
+          <p>I built a reconciliation and collections workspace for Indian founders, small businesses and accountants, with three fictional demo journeys.</p>
+          <dl><dt>Under the hood</dt><dd>A TypeScript workspace with sample records that illustrate orders, refunds and payouts. The public demo has live payments disabled.</dd><dt>My design choice</dt><dd>I start with one discrepancy someone can recognize and follow through the records, so a pilot can focus on the step that costs them time.</dd></dl>
+          <div class="build-links"><a href="https://github.com/Omi811/omsetra">Omsetra source ↗</a></div>
+        </article>
+      </div>
       <div class="next-grid">
         <article class="build-card"><h3>The type came from VedaaChari.</h3><p>I brought its Fraunces headlines and Hind body type across the studio. Fraunces gives each product a distinct headline. Hind keeps longer explanations and Devanagari easy to read.</p></article>
         <article class="build-card"><h3>The artwork has a job.</h3><p>I used actual product screens where available and labeled sample diagrams for SEO and REA. On scroll, the artwork moves gently into place while the text stays put.</p></article>
       </div>
       <a class="offer-link" href="https://github.com/Omi811/Omi811.github.io">See how the homepage is built ↗</a>
+      <a class="offer-link" href="https://github.com/juliangarnier/anime">Motion by Anime.js ↗</a>
     </section>
     <section class="band wrap" id="next">
       <h2>In the works.</h2>
