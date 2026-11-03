@@ -1,0 +1,76 @@
+*{box-sizing:border-box}
+:root{color:#1d1d1f;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;scroll-behavior:smooth}
+body,figure,p,h1,h2,h3,dl,dd{margin:0}
+a{color:inherit;text-underline-offset:.2em}
+a:focus-visible{outline:3px solid #0071e3;outline-offset:4px}
+[id]{scroll-margin-top:72px}
+.wrap{width:min(1100px,calc(100% - 40px));margin-inline:auto}
+.skip{position:fixed;top:-5rem;left:1rem;background:white;padding:12px;z-index:5}
+.skip:focus{top:8px}
+.top{position:sticky;top:0;z-index:2;background:#fffffff5;border-bottom:1px solid #e5e5e7;backdrop-filter:blur(18px)}
+.nav,.nav-links,.product-nav,.actions{display:flex;align-items:center;gap:10px 23px;flex-wrap:wrap}
+.nav{justify-content:space-between;min-height:56px}
+.nav a,.product-nav a{text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
+.nav a:hover,.product-nav a:hover{text-decoration:underline}
+.brand{font-weight:700;letter-spacing:-.035em}
+.nav-links{font-size:.83rem;color:#3f3f44}
+.intro{text-align:center;padding:44px 0 26px}
+h1{font-size:clamp(2.8rem,6vw,5.1rem);line-height:1.02;letter-spacing:-.065em}
+.intro p{color:#55555a;margin-top:11px;font-size:clamp(1rem,2vw,1.35rem)}
+.product-nav,.actions{justify-content:center}
+.product-nav{margin-top:14px;font-size:.86rem}
+.collection{display:grid;gap:12px}
+.project{--ink:#1d1d1f;--field:#f5f5f7;--rim:#0002;background:var(--field);color:var(--ink);text-align:center;padding:clamp(42px,6vw,76px) 20px 0;overflow:hidden}
+.vedaachari{--ink:#fff4ff;--field:#1b1329;--rim:#ffffff24}
+.seo{--ink:#202d23;--field:#edf3ea}
+.freellm{--ink:#f5f6ff;--field:#111523;--rim:#ffffff24}
+.rea{--ink:#24221e;--field:#f4efe6}
+.omsetra{--ink:#edfff4;--field:#112522;--rim:#ffffff24}
+.product-copy{max-width:760px;margin-inline:auto}
+.product-name{font-size:clamp(.98rem,2vw,1.25rem);font-weight:700;margin-bottom:9px}
+h2{font-size:clamp(2.25rem,5.5vw,4.65rem);font-weight:700;letter-spacing:-.058em;line-height:1.04;text-wrap:balance}
+.product-intro{font-size:clamp(1rem,2.2vw,1.35rem);line-height:1.43;max-width:48ch;margin:13px auto 0;text-wrap:pretty}
+.offer{font-size:.88rem;margin:14px 0 0;opacity:.83}
+.actions{margin-top:17px;gap:8px 12px}
+.button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 17px;border-radius:999px;text-decoration:none;font-weight:600;font-size:.9rem;border:1px solid transparent}
+.primary{background:#0071e3;color:white}
+.primary:hover{background:#005ebd}
+.secondary{border-color:currentColor}
+.secondary:hover{background:var(--rim)}
+.offer-link{display:inline-flex;align-items:center;min-height:44px;font-size:.86rem}
+.art{width:min(900px,100%);margin:clamp(24px,4vw,50px) auto 0}
+.art img{display:block;width:100%;height:auto;border:1px solid var(--rim);border-bottom:0;border-radius:16px 16px 0 0}
+.diagram{max-width:610px;margin:auto;padding:26px clamp(18px,5vw,42px);background:#fff;border:1px solid var(--rim);border-bottom:0;border-radius:16px 16px 0 0;text-align:left}
+.diagram p{font-weight:700;margin-bottom:16px}
+.diagram dl div{display:flex;justify-content:space-between;gap:12px;border-top:1px solid #ddd;padding:12px 0}
+.diagram dd{text-align:right;color:#444}
+.trace ol{margin:0;padding-left:24px}
+.trace li{padding:12px 6px;border-top:1px solid #ddd}
+.band{padding:48px 0;border-bottom:1px solid #e5e5e7}
+.band h2,.support h2{font-size:clamp(1.8rem,4vw,3.2rem)}
+.band p,.support p{margin:12px 0;color:#45454b;line-height:1.5}
+.next-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.teaser{background:#f5f5f7;padding:24px;border-radius:16px}
+footer{background:#f5f5f7}
+.support{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;padding:40px 0}
+.payment{display:flex;align-items:center;gap:16px;max-width:100%}
+.payment img{background:#fff;border-radius:8px;display:block}
+.payment p{margin:4px 0;font-size:.82rem;overflow-wrap:anywhere}
+.payment a{display:inline-flex;align-items:center;min-height:44px;font-size:.82rem}
+.payment .upi{font-weight:700}
+@media(max-width:640px){
+  [id]{scroll-margin-top:14px}
+  .top{position:static}
+  .nav{gap:0;justify-content:center;padding-top:4px}
+  .brand{width:100%;justify-content:center}
+  .nav-links,.product-nav{justify-content:center;gap:0 14px}
+  .intro{padding-top:28px}
+  .next-grid{grid-template-columns:1fr}
+  .payment img{width:104px;height:104px}
+}
+@media(prefers-reduced-motion:no-preference){
+  .button{transition:background-color .18s ease}
+  .vedaachari .art{animation:arrive .34s ease-out both}
+  @keyframes arrive{from{transform:translateY(8px)}to{transform:translateY(0)}}
+}
+@media(prefers-reduced-motion:reduce){:root{scroll-behavior:auto}}
