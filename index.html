@@ -13,73 +13,267 @@
   <link rel="stylesheet" href="product-studio-type.css">
   <link rel="stylesheet" href="studio-notes.css">
   <script type="module" src="studio-notes.mjs"></script>
+  <link rel="stylesheet" href="apple-ecosystem.css">
+  <script src="apple-ecosystem.js" defer></script>
 </head>
 <body id="home">
   <a class="skip" href="#work">Skip to products</a>
-  <header class="top">
-    <nav class="nav wrap" aria-label="Main navigation">
-      <a class="brand" href="#home">Om Panchal</a>
-      <div class="nav-links"><a href="agentwire/" style="color: #2563eb; font-weight: 700;">⚡ AgentWire</a><a href="#work">Products</a><a href="#pilots">Free pilots</a><a href="#build">How I built it</a><a href="#next">What’s next</a><a href="#support">Support</a><a href="https://github.com/Omi811">GitHub ↗</a></div>
-    </nav>
-  </header>
+    <!-- Apple Global Frosted Navigation & Ecosystem Island -->
+  <nav class="apple-nav" aria-label="Global Ecosystem Navigation">
+    <div class="apple-nav-inner">
+      <a href="https://omi811.github.io/" class="apple-brand" title="Om Panchal Studio">
+        <span class="apple-brand-icon"></span>
+        <span>Om Panchal</span>
+      </a>
+
+      <!-- Ecosystem Switcher -->
+      <div class="apple-ecosystem-wrapper">
+        <button class="apple-ecosystem-btn" id="appleEcosystemTrigger" aria-expanded="false" aria-haspopup="true">
+          <span class="apple-dot-live"></span>
+          <span>Ecosystem</span>
+          <svg class="apple-chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+
+        <!-- Apple Flyout Grid -->
+        <div class="apple-flyout" id="appleEcosystemFlyout">
+          <div class="apple-flyout-header">
+            <span>INTERCONNECTED SYSTEM ARCHITECTURE</span>
+            <span class="apple-flyout-badge">● 6 REPOS LIVE</span>
+          </div>
+
+          <div class="apple-flyout-grid">
+            <a href="https://omi811.github.io/" class="apple-flyout-item theme-hub is-current" data-project="hub">
+              <div class="apple-flyout-icon-box"></div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">Studio Hub</span>
+                <span class="apple-flyout-desc">Master Portfolio Architecture</span>
+              </div>
+            </a>
+
+            <a href="omsetra/" class="apple-flyout-item theme-omsetra" data-project="omsetra">
+              <div class="apple-flyout-icon-box">💳</div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">Omsetra</span>
+                <span class="apple-flyout-desc">Fintech Reconciliation</span>
+              </div>
+            </a>
+
+            <a href="freellm-hub/" class="apple-flyout-item theme-freellm" data-project="freellm">
+              <div class="apple-flyout-icon-box">🧠</div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">FreeLLM Hub</span>
+                <span class="apple-flyout-desc">Client-Side WebLLM & RAM</span>
+              </div>
+            </a>
+
+            <a href="agentwire/" class="apple-flyout-item theme-agentwire" data-project="agentwire">
+              <div class="apple-flyout-icon-box">⚡</div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">AgentWire</span>
+                <span class="apple-flyout-desc">3,185+ AI & MCP Radar</span>
+              </div>
+            </a>
+
+            <a href="universal-seo/" class="apple-flyout-item theme-seo" data-project="seo">
+              <div class="apple-flyout-icon-box">🔍</div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">Universal SEO</span>
+                <span class="apple-flyout-desc">GEO & Generative AI Search</span>
+              </div>
+            </a>
+
+            <a href="rea/" class="apple-flyout-item theme-rea" data-project="rea">
+              <div class="apple-flyout-icon-box">🏗️</div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">REA Ecosystem</span>
+                <span class="apple-flyout-desc">AST Memory & ReUI Components</span>
+              </div>
+            </a>
+
+            <a href="autonomous-studio/" class="apple-flyout-item theme-studio" data-project="studio">
+              <div class="apple-flyout-icon-box">⚙️</div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">Autonomous Studio</span>
+                <span class="apple-flyout-desc">Self-Healing Closed-Loop</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="apple-flyout-footer">
+            <span>Zero Server Bloat • Pure AST Memory</span>
+            <a href="https://github.com/Omi811" target="_blank" rel="noopener noreferrer">GitHub Profile ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="apple-nav-links">
+        <a href="#architecture" class="apple-nav-link">Architecture</a>
+        <a href="#work" class="apple-nav-link">Products</a>
+        <a href="agentwire/" class="apple-nav-link is-pill">AgentWire ⚡</a>
+        <a href="#support" class="apple-nav-link">Support</a>
+      </div>
+    </div>
+  </nav>
+
   <main>
     <div class="intro wrap" id="shop">
       <h1>Product Studio.</h1>
       <p>Five independent products by Om Panchal.</p>
       <nav class="product-nav" aria-label="Jump to a product"><a href="#architecture">Architecture</a><a href="#vedaachari">VedaaChari</a><a href="#seo">SEO</a><a href="#freellm">FreeLLM Hub</a><a href="#rea">REA</a><a href="#omsetra">Omsetra</a></nav>
     </div>
-        <section class="band wrap architecture-story" id="architecture" aria-label="Ecosystem Architecture" style="padding: 20px 0 30px;">
-      <div style="background: #fbfbfd; border: 1px solid #e5e5e7; border-radius: 18px; padding: clamp(24px, 4vw, 40px); box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
-        <p style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #0071e3; margin-bottom: 8px;">Studio Architecture</p>
-        <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.6rem); line-height: 1.15; margin-bottom: 12px;">How the Projects Interlink</h2>
-        <p style="color: #6e6e73; font-size: 1.05rem; max-width: 780px; margin-bottom: 24px; line-height: 1.5;">
-          These five products are not isolated experiments. They are the working parts of a single, closed-loop technical architecture: autonomous developer tooling feeding production-ready client applications.
-        </p>
+            <!-- Apple Bento Grid & Scrollytelling Architecture -->
+    <section class="band wrap apple-architecture-section" id="architecture" aria-label="Ecosystem Architecture">
+      <div class="apple-section-header">
+        <span class="apple-eyebrow">SYSTEM ARCHITECTURE</span>
+        <h2 class="apple-section-title">Engineered like hardware.<br>Interconnected like software.</h2>
+        <p class="apple-section-sub">A zero-bloat tri-layer ecosystem where autonomous compiler memory, client-side intelligence, and high-conversion applications operate in continuous closed-loop synchrony.</p>
+      </div>
 
-        <!-- Visual Architecture Diagram -->
-        <div style="background: #1d1d1f; color: #f5f5f7; border-radius: 12px; padding: clamp(16px, 3vw, 28px); font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: clamp(0.72rem, 1.35vw, 0.86rem); line-height: 1.45; overflow-x: auto; margin-bottom: 24px; box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);">
-          <pre style="margin: 0;">┌────────────────────────────────────────────────────────────────────────┐
-│                       1. THE INFRASTRUCTURE LAYER                      │
-│                  (How Modern Software Gets Built &amp; Ranked)             │
-│                                                                        │
-│   • REA Developer Ecosystem    ➔  Provides AST code memory &amp; UI blocks │
-│   • Universal SEO Agent Suite  ➔  Optimizes for Google &amp; AI Search     │
-│   • Autonomous Web Studio      ➔  Self-healing build &amp; audit loop      │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │
-                                    ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│                        2. THE PRODUCTION APPLICATIONS                  │
-│                     (Real-World Proof of the Infrastructure)           │
-│                                                                        │
-│   • Omsetra     ➔  Fintech reconciliation built with ReUI components   │
-│   • FreeLLM Hub ➔  In-browser AI execution testing client-side memory   │
-│   • VedaaChari  ➔  Ultra-low latency ephemeris on Cloudflare Workers   │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │
-                                    ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│                         3. THE VALUE TO CLIENTS                        │
-│   "Zero server bloat, high conversion, and built to rank on AI search" │
-└────────────────────────────────────────────────────────────────────────┘</pre>
+      <div class="apple-bento-grid">
+
+        <!-- Card 1 (Span 8): Layer 1 - Infrastructure Layer -->
+        <div class="bento-card span-8 theme-titanium" data-apple-reveal>
+          <div class="bento-badge">LAYER 01 • THE FOUNDATION</div>
+          <h3 class="bento-title">Autonomous Infrastructure</h3>
+          <p class="bento-desc">How modern software gets built, audited, and ranked without human latency or server bloat.</p>
+          
+          <div class="bento-tri-features">
+            <a href="rea/" class="bento-sub-item">
+              <div class="bento-sub-icon" style="color: #2dd4bf;">🏗️</div>
+              <div>
+                <strong>REA Developer Ecosystem</strong>
+                <span>AST code memory, ReUI design blocks & zero-bloat components</span>
+              </div>
+              <span class="bento-sub-arrow">›</span>
+            </a>
+
+            <a href="universal-seo/" class="bento-sub-item">
+              <div class="bento-sub-icon" style="color: #ff6b4a;">🔍</div>
+              <div>
+                <strong>Universal SEO Agent Suite</strong>
+                <span>Generative Engine Optimization (GEO) & autonomous ranking</span>
+              </div>
+              <span class="bento-sub-arrow">›</span>
+            </a>
+
+            <a href="autonomous-studio/" class="bento-sub-item">
+              <div class="bento-sub-icon" style="color: #818cf8;">⚙️</div>
+              <div>
+                <strong>Autonomous Web Studio</strong>
+                <span>Self-healing build loop, Senior Dev audit & closed-loop CI/CD</span>
+              </div>
+              <span class="bento-sub-arrow">›</span>
+            </a>
+          </div>
+
+          <div class="bento-footer-stat">
+            <span class="stat-pill">AST MEMORY READY</span>
+            <span class="stat-pill">LIGHTHOUSE 100/100</span>
+            <span class="stat-pill">GEO TUNED</span>
+          </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
-          <div style="background: #ffffff; border: 1px solid #e5e5e7; border-radius: 10px; padding: 18px;">
-            <strong style="color: #0071e3; display: block; margin-bottom: 6px;">1. Infrastructure First</strong>
-            <p style="font-size: 0.9rem; color: #424245; margin: 0; line-height: 1.45;">REA and the SEO Suite establish the rules—giving AI coding agents clean UI blocks, up-to-date documentation, and 60+ automated search audits.</p>
+        <!-- Card 2 (Span 4): Open-Source Radar -->
+        <div class="bento-card span-4 theme-agentwire" data-apple-reveal>
+          <div>
+            <div class="bento-badge">RADAR • LIVE TELEMETRY</div>
+            <h3 class="bento-title">AgentWire</h3>
+            <p class="bento-desc">Autonomous telemetry tracking 3,185+ open-source AI agents and MCP servers in real time.</p>
           </div>
-          <div style="background: #ffffff; border: 1px solid #e5e5e7; border-radius: 10px; padding: 18px;">
-            <strong style="color: #34c759; display: block; margin-bottom: 6px;">2. Zero Server Bloat</strong>
-            <p style="font-size: 0.9rem; color: #424245; margin: 0; line-height: 1.45;">FreeLLM Hub and VedaaChari prove that heavy computations can run client-side in the browser or on serverless Cloudflare Workers with zero cloud overhead.</p>
+          
+          <div class="bento-radar-meter">
+            <span class="radar-number">3,185</span>
+            <span class="radar-label">ACTIVE REPOSITORIES INDEXED</span>
           </div>
-          <div style="background: #ffffff; border: 1px solid #e5e5e7; border-radius: 10px; padding: 18px;">
-            <strong style="color: #ff9500; display: block; margin-bottom: 6px;">3. Direct B2B Impact</strong>
-            <p style="font-size: 0.9rem; color: #424245; margin: 0; line-height: 1.45;">Omsetra applies this technical stack to solve real financial reconciliation and invoice tracking for Indian businesses and accountants.</p>
+
+          <a href="agentwire/" class="bento-action-btn">
+            <span>Explore Live Radar</span>
+            <span>›</span>
+          </a>
+        </div>
+
+        <!-- Card 3 (Span 4): Production App - Omsetra -->
+        <div class="bento-card span-4 theme-omsetra" data-apple-reveal>
+          <div>
+            <div class="bento-badge">LAYER 02 • PRODUCTION</div>
+            <div class="bento-app-icon">💳</div>
+            <h3 class="bento-title">Omsetra</h3>
+            <p class="bento-desc">Fintech reconciliation & precision payouts built with zero-drift ReUI components.</p>
+          </div>
+          <div class="bento-app-meta">
+            <span>3-Way Auto Ledger</span>
+            <span>0ms Client Drift</span>
+          </div>
+          <a href="omsetra/" class="bento-action-btn btn-emerald">
+            <span>Launch Omsetra</span>
+            <span>›</span>
+          </a>
+        </div>
+
+        <!-- Card 4 (Span 4): Production App - FreeLLM Hub -->
+        <div class="bento-card span-4 theme-freellm" data-apple-reveal>
+          <div>
+            <div class="bento-badge">LAYER 02 • PRODUCTION</div>
+            <div class="bento-app-icon">🧠</div>
+            <h3 class="bento-title">FreeLLM Hub</h3>
+            <p class="bento-desc">In-browser client-side WebLLM & WebGPU execution with zero server compute costs.</p>
+          </div>
+          <div class="bento-app-meta">
+            <span>100% Client RAM</span>
+            <span>Privacy-First</span>
+          </div>
+          <a href="freellm-hub/" class="bento-action-btn btn-violet">
+            <span>Launch FreeLLM</span>
+            <span>›</span>
+          </a>
+        </div>
+
+        <!-- Card 5 (Span 4): Production App - VedaaChari -->
+        <div class="bento-card span-4 theme-vedaa" data-apple-reveal>
+          <div>
+            <div class="bento-badge">LAYER 02 • PRODUCTION</div>
+            <div class="bento-app-icon">🪐</div>
+            <h3 class="bento-title">VedaaChari</h3>
+            <p class="bento-desc">Ultra-low latency planetary ephemeris computed in microseconds on Cloudflare Workers edge.</p>
+          </div>
+          <div class="bento-app-meta">
+            <span>Microsecond Edge</span>
+            <span>Pure Math AST</span>
+          </div>
+          <a href="#vedaachari" class="bento-action-btn btn-amber">
+            <span>View Engine</span>
+            <span>›</span>
+          </a>
+        </div>
+
+        <!-- Card 6 (Span 12): Layer 3 - Value Guarantee -->
+        <div class="bento-card span-12" data-apple-reveal style="background: linear-gradient(135deg, rgba(28, 28, 36, 0.85) 0%, rgba(18, 18, 24, 0.95) 100%);">
+          <div class="bento-value-inner">
+            <div>
+              <span class="bento-badge">LAYER 03 • THE OUTCOME</span>
+              <h3 class="bento-value-quote">"Zero server bloat, high conversion, and engineered to rank on Google & Generative AI."</h3>
+            </div>
+            <div class="bento-value-stats">
+              <div class="val-stat">
+                <span class="val-num">100</span>
+                <span class="val-label">LIGHTHOUSE SCORE</span>
+              </div>
+              <div class="val-stat">
+                <span class="val-num">0 ms</span>
+                <span class="val-label">SERVER LATENCY</span>
+              </div>
+              <div class="val-stat">
+                <span class="val-num">100%</span>
+                <span class="val-label">CLIENT PRIVACY</span>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
     </section>
+
     <section id="work" aria-label="Products" class="collection">
       <article class="project vedaachari" id="vedaachari" aria-labelledby="vedaachari-title">
         <div class="product-copy">
