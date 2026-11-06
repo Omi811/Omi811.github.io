@@ -1,0 +1,281 @@
+/* Apple Global Navigation & Interconnected Ecosystem Bar
+   Zero-bloat, vanilla CSS following Ponytail senior dev principles.
+   Inspired by Apple.com navigation, Bento Grids, and macOS Control Center. */
+
+:root {
+  --apple-font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --apple-mono: "SF Mono", "JetBrains Mono", Menlo, Monaco, Consolas, monospace;
+  --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --apple-nav-bg: rgba(18, 18, 22, 0.82);
+  --apple-nav-border: rgba(255, 255, 255, 0.08);
+  --apple-flyout-bg: rgba(24, 25, 32, 0.94);
+}
+
+/* Floating Frosted Glass Bar */
+.apple-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 52px;
+  background: var(--apple-nav-bg);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--apple-nav-border);
+  z-index: 9999;
+  font-family: var(--apple-font);
+  transition: background 0.3s var(--apple-ease), border-color 0.3s var(--apple-ease);
+}
+
+.apple-nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand */
+.apple-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #f5f5f7;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: opacity 0.2s;
+}
+.apple-brand:hover { opacity: 0.8; }
+.apple-brand-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+/* Ecosystem Switcher Button */
+.apple-ecosystem-wrapper {
+  position: relative;
+}
+
+.apple-ecosystem-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 980px;
+  padding: 6px 14px;
+  color: #f5f5f7;
+  font-family: var(--apple-font);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s var(--apple-ease);
+  outline: none;
+}
+.apple-ecosystem-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: scale(1.02);
+}
+.apple-ecosystem-btn:active {
+  transform: scale(0.98);
+}
+.apple-dot-live {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34c759;
+  box-shadow: 0 0 8px #34c759;
+  animation: applePulse 2s infinite;
+}
+@keyframes applePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.apple-chevron {
+  width: 10px;
+  height: 10px;
+  transition: transform 0.25s var(--apple-ease);
+}
+.apple-ecosystem-btn[aria-expanded="true"] .apple-chevron {
+  transform: rotate(180deg);
+}
+
+/* Expandable Apple Flyout Bento Menu */
+.apple-flyout {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px) scale(0.97);
+  width: 680px;
+  max-width: calc(100vw - 32px);
+  background: var(--apple-flyout-bg);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 24px;
+  padding: 22px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s var(--apple-ease), transform 0.25s var(--apple-ease);
+  z-index: 10000;
+}
+.apple-flyout.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.apple-flyout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #86868b;
+  font-weight: 600;
+}
+.apple-flyout-badge {
+  color: #34c759;
+  font-family: var(--apple-mono);
+}
+
+/* Flyout 2-column Bento Grid */
+.apple-flyout-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.apple-flyout-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  text-decoration: none;
+  color: #f5f5f7;
+  transition: all 0.2s var(--apple-ease);
+  position: relative;
+  overflow: hidden;
+}
+.apple-flyout-item:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-1px);
+}
+.apple-flyout-item.is-current {
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.12);
+}
+.apple-flyout-item.is-current::after {
+  content: 'CURRENT';
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  font-size: 0.62rem;
+  font-family: var(--apple-mono);
+  background: rgba(255, 255, 255, 0.15);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.apple-flyout-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+/* Unique Color Schemas for Icons */
+.theme-hub .apple-flyout-icon-box { background: rgba(0, 113, 227, 0.2); color: #2997ff; border: 1px solid rgba(0, 113, 227, 0.35); }
+.theme-omsetra .apple-flyout-icon-box { background: rgba(0, 208, 132, 0.2); color: #00d084; border: 1px solid rgba(0, 208, 132, 0.35); }
+.theme-freellm .apple-flyout-icon-box { background: rgba(139, 92, 246, 0.2); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.35); }
+.theme-agentwire .apple-flyout-icon-box { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.35); }
+.theme-seo .apple-flyout-icon-box { background: rgba(255, 107, 74, 0.2); color: #ff6b4a; border: 1px solid rgba(255, 107, 74, 0.35); }
+.theme-rea .apple-flyout-icon-box { background: rgba(20, 184, 166, 0.2); color: #2dd4bf; border: 1px solid rgba(20, 184, 166, 0.35); }
+.theme-studio .apple-flyout-icon-box { background: rgba(99, 102, 241, 0.2); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.35); }
+
+.apple-flyout-text {
+  display: flex;
+  flex-direction: column;
+}
+.apple-flyout-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #fff;
+}
+.apple-flyout-desc {
+  font-size: 0.74rem;
+  color: #86868b;
+  margin-top: 1px;
+}
+
+.apple-flyout-footer {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.74rem;
+  color: #86868b;
+}
+.apple-flyout-footer a {
+  color: #2997ff;
+  text-decoration: none;
+}
+.apple-flyout-footer a:hover { text-decoration: underline; }
+
+/* Right Nav Links */
+.apple-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.apple-nav-link {
+  color: #86868b;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.apple-nav-link:hover { color: #f5f5f7; }
+.apple-nav-link.is-pill {
+  background: #0071e3;
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 980px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.apple-nav-link.is-pill:hover { background: #0077ed; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .apple-flyout {
+    width: calc(100vw - 20px);
+    padding: 16px;
+  }
+  .apple-flyout-grid {
+    grid-template-columns: 1fr;
+  }
+  .apple-nav-links {
+    display: none;
+  }
+}
