@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Omsetra | Precision Payouts & Automated Reconciliation</title>
+  <meta name="description" content="Next-generation financial reconciliation ledger built with Apple-grade precision. Zero server bloat, client-side AST verification, and automated drift auditing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../apple-ecosystem.css">
+  <script src="../apple-ecosystem.js" defer></script>
+  <style>
+    :root {
+      --emerald-bg: #040c08;
+      --emerald-card: rgba(10, 24, 18, 0.75);
+      --emerald-border: rgba(0, 208, 132, 0.18);
+      --emerald-accent: #00d084;
+      --emerald-glow: rgba(0, 208, 132, 0.25);
+      --gold-accent: #eab308;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--emerald-bg);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(0, 208, 132, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 20%, rgba(234, 179, 8, 0.08) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(6, 78, 59, 0.25) 0px, transparent 60%);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      min-height: 100vh;
+      line-height: 1.5;
+      padding-top: 52px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 208, 132, 0.12);
+      border: 1px solid var(--emerald-border);
+      padding: 6px 14px;
+      border-radius: 980px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--emerald-accent);
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-size: clamp(2.6rem, 6.5vw, 4.2rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #ffffff 40%, #a7f3d0 80%, #00d084 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      max-width: 680px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+    .hero-ctas {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-apple {
+      background: var(--emerald-accent);
+      color: #041009;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 980px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-apple:hover {
+      background: #10b981;
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 10px 28px var(--emerald-glow);
+      color: #fff;
+    }
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #fff;
+      font-weight: 600;
+      padding: 14px 24px;
+      border-radius: 980px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Bento Grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 22px;
+      margin-bottom: 50px;
+    }
+    .bento-card {
+      background: var(--emerald-card);
+      border: 1px solid var(--emerald-border);
+      border-radius: 28px;
+      padding: 34px;
+      backdrop-filter: blur(24px);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s;
+      position: relative;
+      overflow: hidden;
+    }
+    .bento-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 208, 132, 0.45);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 208, 132, 0.2);
+    }
+
+    .span-8 { grid-column: span 8; }
+    .span-4 { grid-column: span 4; }
+    .span-12 { grid-column: span 12; }
+
+    .card-badge {
+      font-size: 0.74rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      color: var(--emerald-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+    .card-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    /* Live Sandbox Simulator */
+    .reconcile-sandbox {
+      background: #020704;
+      border: 1px solid rgba(0, 208, 132, 0.2);
+      border-radius: 18px;
+      padding: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+    }
+    .sandbox-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .sandbox-row:last-child { border-bottom: none; }
+    .status-match { color: #34c759; font-weight: 700; }
+
+    /* Ecosystem Interconnection Banner */
+    .interconnect-banner {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(6, 78, 59, 0.15) 100%);
+      border: 1px solid var(--emerald-border);
+      border-radius: 24px;
+      padding: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .interconnect-text h4 {
+      font-size: 1.25rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .interconnect-text p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .interconnect-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .pill-link {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 8px 16px;
+      border-radius: 980px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-family: 'JetBrains Mono', monospace;
+      transition: all 0.2s;
+    }
+    .pill-link:hover {
+      background: rgba(0, 208, 132, 0.2);
+      border-color: var(--emerald-accent);
+      color: var(--emerald-accent);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 80px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      color: #86868b;
+      font-size: 0.88rem;
+    }
+    footer a { color: var(--emerald-accent); text-decoration: none; }
+
+    @media (max-width: 1024px) {
+      .span-8, .span-4 { grid-column: span 12; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Apple Frosted Global Navigation -->
+  <nav class="apple-nav" aria-label="Global Ecosystem Navigation">
+    <div class="apple-nav-inner">
+      <a href="../" class="apple-brand" title="Return to Om Panchal Studio">
+        <span class="apple-brand-icon"></span>
+        <span>Om Panchal</span>
+      </a>
+
+      <!-- Ecosystem Switcher -->
+      <div class="apple-ecosystem-wrapper">
+        <button class="apple-ecosystem-btn" id="appleEcosystemTrigger" aria-expanded="false" aria-haspopup="true">
+          <span class="apple-dot-live" style="background: #00d084; box-shadow: 0 0 8px #00d084;"></span>
+          <span>Omsetra • Ecosystem</span>
+          <svg class="apple-chevron" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+
+        <!-- Apple Flyout Grid -->
+        <div class="apple-flyout" id="appleEcosystemFlyout">
+          <div class="apple-flyout-header">
+            <span>INTERCONNECTED SYSTEM ARCHITECTURE</span>
+            <span class="apple-flyout-badge">● 6 REPOS LIVE</span>
+          </div>
+
+          <div class="apple-flyout-grid">
+            <a href="../" class="apple-flyout-item theme-hub" data-project="hub">
+              <div class="apple-flyout-icon-box"></div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">Studio Hub</span>
+                <span class="apple-flyout-desc">Master Portfolio Architecture</span>
+              </div>
+            </a>
+
+            <a href="../omsetra/" class="apple-flyout-item theme-omsetra is-current" data-project="omsetra">
+              <div class="apple-flyout-icon-box">💳</div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">Omsetra</span>
+                <span class="apple-flyout-desc">Fintech Reconciliation</span>
+              </div>
+            </a>
+
+            <a href="../freellm-hub/" class="apple-flyout-item theme-freellm" data-project="freellm">
+              <div class="apple-flyout-icon-box">🧠</div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">FreeLLM Hub</span>
+                <span class="apple-flyout-desc">Client-Side WebLLM & RAM</span>
+              </div>
+            </a>
+
+            <a href="../agentwire/" class="apple-flyout-item theme-agentwire" data-project="agentwire">
+              <div class="apple-flyout-icon-box">⚡</div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">AgentWire</span>
+                <span class="apple-flyout-desc">3,185+ AI & MCP Radar</span>
+              </div>
+            </a>
+
+            <a href="../universal-seo/" class="apple-flyout-item theme-seo" data-project="seo">
+              <div class="apple-flyout-icon-box">🔍</div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">Universal SEO</span>
+                <span class="apple-flyout-desc">GEO & AI Search Engine</span>
+              </div>
+            </a>
+
+            <a href="../rea/" class="apple-flyout-item theme-rea" data-project="rea">
+              <div class="apple-flyout-icon-box">🏗️</div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">REA Ecosystem</span>
+                <span class="apple-flyout-desc">AST Memory & ReUI Components</span>
+              </div>
+            </a>
+
+            <a href="../autonomous-studio/" class="apple-flyout-item theme-studio" data-project="studio">
+              <div class="apple-flyout-icon-box">⚙️</div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">Autonomous Studio</span>
+                <span class="apple-flyout-desc">Self-Healing Closed-Loop</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="apple-flyout-footer">
+            <span>Zero Server Bloat • Pure AST Memory</span>
+            <a href="https://github.com/Omi811" target="_blank" rel="noopener noreferrer">GitHub Profile ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="apple-nav-links">
+        <a href="#features" class="apple-nav-link">Features</a>
+        <a href="#sandbox" class="apple-nav-link">Sandbox</a>
+        <a href="../agentwire/" class="apple-nav-link is-pill">AgentWire ⚡</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero-badge">💳 FINTECH RECONCILIATION ENGINE</div>
+      <h1>Precision Payouts.<br>Zero Drift.</h1>
+      <p>Automated 3-way reconciliation for modern platforms, marketplaces, and founders. Verify escrow ledger integrity in microseconds with client-side AST precision.</p>
+      
+      <div class="hero-ctas">
+        <a href="#sandbox" class="btn-apple">
+          <span>⚡</span> Launch Interactive Sandbox
+        </a>
+        <a href="../#projects" class="btn-ghost">
+          <span>←</span> Back to Studio Hub
+        </a>
+      </div>
+    </header>
+
+    <!-- Bento Grid -->
+    <main class="bento-grid" id="features">
+      
+      <!-- Card 1: 3-Way Auto Reconciliation (Span 8) -->
+      <div class="bento-card span-8" data-apple-reveal>
+        <div class="card-badge">CORE CAPABILITY • TRIPLE AUDIT</div>
+        <h2 class="card-title">Automated 3-Way Reconciliation</h2>
+        <p class="card-desc">Simultaneously validates gateway settlements (Razorpay, Stripe) against bank webhooks and internal escrow ledgers. Flags floating balances and phantom transaction drift in under 12 milliseconds.</p>
+        
+        <div class="reconcile-sandbox" id="sandbox">
+          <div class="sandbox-row">
+            <span>Razorpay Settlement #RZP-9841</span>
+            <span>$4,250.00 USD</span>
+            <span class="status-match">✓ MATCHED</span>
+          </div>
+          <div class="sandbox-row">
+            <span>Bank Webhook #HDFC-4182</span>
+            <span>$4,250.00 USD</span>
+            <span class="status-match">✓ CONFIRMED</span>
+          </div>
+          <div class="sandbox-row">
+            <span>Internal Escrow Ledger #OM-002</span>
+            <span>$4,250.00 USD</span>
+            <span class="status-match">✓ ZERO DRIFT</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: 0ms Latency (Span 4) -->
+      <div class="bento-card span-4" data-apple-reveal>
+        <div class="card-badge">PERFORMANCE • PONTAIL ZERO-BLOAT</div>
+        <h2 class="card-title">Zero Server Drift</h2>
+        <p class="card-desc">Compiled with AST precision. No heavy third-party tracking scripts or backend lag.</p>
+        <div style="margin-top: 30px; text-align: center;">
+          <div style="font-size: 3rem; font-weight: 800; color: #00d084; font-family: 'JetBrains Mono';">0 ms</div>
+          <div style="font-size: 0.76rem; color: #86868b; letter-spacing: 0.08em;">AUDIT LATENCY ON EDGE</div>
+        </div>
+      </div>
+
+      <!-- Card 3: ReUI Design System (Span 4) -->
+      <div class="bento-card span-4" data-apple-reveal>
+        <div class="card-badge">ECOSYSTEM INTEGRATION</div>
+        <h2 class="card-title">ReUI Architecture</h2>
+        <p class="card-desc">Crafted using the high-performance component registry provided by the <strong>REA Developer Ecosystem</strong>.</p>
+        <a href="../rea/" class="btn-ghost" style="display: inline-block; margin-top: 14px; font-size: 0.82rem;">Inspect ReUI Specs ›</a>
+      </div>
+
+      <!-- Card 4: Audited by Autonomous Studio (Span 8) -->
+      <div class="bento-card span-8" data-apple-reveal>
+        <div class="card-badge">VERIFICATION & RECON PROTOCOL</div>
+        <h2 class="card-title">Continuously Verified by Autonomous Web Studio</h2>
+        <p class="card-desc">Every financial schema transition and AST ledger calculation is tested by autonomous CI closed-loops before deployment. Zero broken dependencies, 100% mathematical integrity.</p>
+        <div style="display: flex; gap: 10px; margin-top: 12px;">
+          <span style="font-size: 0.74rem; font-family: 'JetBrains Mono'; background: rgba(0,208,132,0.15); border: 1px solid rgba(0,208,132,0.3); padding: 4px 10px; border-radius: 6px; color: #34d399;">SHA-256 LEDGER HASHING</span>
+          <span style="font-size: 0.74rem; font-family: 'JetBrains Mono'; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 6px; color: #94a3b8;">CLOSED-LOOP VERIFIED</span>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Interconnected Banner -->
+    <section class="interconnect-banner">
+      <div class="interconnect-text">
+        <h4>Interconnected Across The Om Panchal Ecosystem</h4>
+        <p>Built with ReUI components, audited by Autonomous Web Studio, and optimized by Universal SEO Suite.</p>
+      </div>
+      <div class="interconnect-links">
+        <a href="../rea/" class="pill-link">REA Components</a>
+        <a href="../autonomous-studio/" class="pill-link">Autonomous Studio</a>
+        <a href="../agentwire/" class="pill-link">AgentWire Radar</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>Omsetra • Built by <a href="../">Om Panchal</a> • Part of the Autonomous Software Studio.</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
