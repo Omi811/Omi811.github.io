@@ -279,3 +279,302 @@
     display: none;
   }
 }
+
+
+/* ========================================================
+   Apple Bento Grid & Scrollytelling Architecture
+   ======================================================== */
+
+.apple-architecture-section {
+  padding: 60px 0 80px;
+  position: relative;
+}
+
+.apple-section-header {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 50px;
+}
+.apple-eyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #2997ff;
+  margin-bottom: 12px;
+  font-family: var(--apple-mono);
+}
+.apple-section-title {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: #f5f5f7;
+  margin-bottom: 18px;
+}
+.apple-section-sub {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #86868b;
+}
+
+/* 12-Column Asymmetric Bento Grid */
+.apple-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 22px;
+}
+
+/* Base Bento Card */
+.bento-card {
+  background: rgba(26, 26, 32, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.4s var(--apple-ease), border-color 0.4s var(--apple-ease), box-shadow 0.4s var(--apple-ease);
+  position: relative;
+  overflow: hidden;
+}
+.bento-card:hover {
+  transform: translateY(-4px) scale(1.006);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+/* Scrollytelling Reveal Animation */
+[data-apple-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s var(--apple-ease), transform 0.8s var(--apple-ease);
+}
+[data-apple-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Column Spans */
+.span-4 { grid-column: span 4; }
+.span-6 { grid-column: span 6; }
+.span-8 { grid-column: span 8; }
+.span-12 { grid-column: span 12; }
+
+/* Bento Typography & Elements */
+.bento-badge {
+  font-size: 0.72rem;
+  font-family: var(--apple-mono);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #86868b;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.bento-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.bento-desc {
+  font-size: 0.96rem;
+  color: #a1a1a6;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+/* Tri-Feature Sub-List in Infrastructure Card */
+.bento-tri-features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.bento-sub-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  text-decoration: none;
+  color: #f5f5f7;
+  transition: all 0.25s var(--apple-ease);
+}
+.bento-sub-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateX(4px);
+}
+.bento-sub-icon {
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+.bento-sub-item strong {
+  display: block;
+  font-size: 0.92rem;
+  color: #fff;
+}
+.bento-sub-item span {
+  font-size: 0.78rem;
+  color: #86868b;
+}
+.bento-sub-arrow {
+  margin-left: auto;
+  font-size: 1.2rem;
+  color: #86868b;
+  transition: transform 0.2s var(--apple-ease);
+}
+.bento-sub-item:hover .bento-sub-arrow {
+  color: #2997ff;
+  transform: translateX(3px);
+}
+
+.bento-footer-stat {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.stat-pill {
+  font-size: 0.72rem;
+  font-family: var(--apple-mono);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 4px 10px;
+  border-radius: 980px;
+  color: #86868b;
+}
+
+/* Radar Pulse in AgentWire Card */
+.bento-radar-meter {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 18px;
+  padding: 24px;
+  text-align: center;
+  margin-bottom: 24px;
+  position: relative;
+}
+.radar-number {
+  display: block;
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #60a5fa;
+  font-family: var(--apple-mono);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.radar-label {
+  font-size: 0.72rem;
+  font-family: var(--apple-mono);
+  color: #86868b;
+  letter-spacing: 0.06em;
+}
+
+/* Action Buttons */
+.bento-action-btn {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0071e3;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 980px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s var(--apple-ease);
+}
+.bento-action-btn:hover {
+  background: #0077ed;
+  transform: scale(1.02);
+  box-shadow: 0 4px 16px rgba(0, 113, 227, 0.4);
+}
+.btn-emerald { background: #00d084; color: #041009; }
+.btn-emerald:hover { background: #10b981; box-shadow: 0 4px 16px rgba(0, 208, 132, 0.4); color: #fff; }
+.btn-violet { background: #8b5cf6; color: #fff; }
+.btn-violet:hover { background: #7c3aed; box-shadow: 0 4px 16px rgba(139, 92, 246, 0.4); }
+.btn-amber { background: #f59e0b; color: #000; }
+.btn-amber:hover { background: #d97706; box-shadow: 0 4px 16px rgba(245, 158, 11, 0.4); color: #fff; }
+
+.bento-app-icon {
+  font-size: 2.4rem;
+  margin-bottom: 14px;
+}
+.bento-app-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 0.76rem;
+  font-family: var(--apple-mono);
+  color: #86868b;
+  margin-bottom: 24px;
+}
+
+/* Layer 3 - Value Guarantee Banner */
+.bento-value {
+  background: linear-gradient(135deg, rgba(28, 28, 36, 0.85) 0%, rgba(18, 18, 24, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.bento-value-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.bento-value-quote {
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #fff;
+  line-height: 1.25;
+  max-width: 650px;
+}
+.bento-value-stats {
+  display: flex;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+.val-stat {
+  display: flex;
+  flex-direction: column;
+}
+.val-num {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 6px;
+  font-family: var(--apple-mono);
+}
+.val-label {
+  font-size: 0.72rem;
+  font-family: var(--apple-mono);
+  color: #86868b;
+  letter-spacing: 0.06em;
+}
+
+/* Unique Card Theme Borders & Highlights */
+.theme-titanium:hover { border-color: rgba(41, 151, 255, 0.35); }
+.theme-omsetra:hover { border-color: rgba(0, 208, 132, 0.4); }
+.theme-freellm:hover { border-color: rgba(139, 92, 246, 0.4); }
+.theme-agentwire:hover { border-color: rgba(59, 130, 246, 0.4); }
+.theme-vedaa:hover { border-color: rgba(245, 158, 11, 0.4); }
+
+@media (max-width: 1024px) {
+  .span-8, .span-4 { grid-column: span 12; }
+}
+@media (max-width: 768px) {
+  .apple-bento-grid { grid-template-columns: 1fr; gap: 16px; }
+  .bento-card { padding: 24px; border-radius: 22px; }
+  .bento-value-inner { flex-direction: column; align-items: flex-start; }
+  .bento-value-stats { gap: 20px; }
+}
