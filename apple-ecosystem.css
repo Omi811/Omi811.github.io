@@ -601,3 +601,20 @@ body, p, .apple-section-sub, .bento-desc, .card-desc, .apple-brand, .apple-flyou
   .bento-value-inner { flex-direction: column; align-items: flex-start; }
   .bento-value-stats { gap: 20px; }
 }
+
+.apple-brand-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.apple-brand-icon svg,
+.apple-brand-icon img,
+.op-nav-svg {
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+  border-radius: 6px;
+}
