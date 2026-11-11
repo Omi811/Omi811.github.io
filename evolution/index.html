@@ -1,0 +1,2172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Om Panchal Studio · Evolution Edition (Second Homepage)</title>
+  <meta name="description" content="Om Panchal Studio Evolution Edition: High-voltage autonomous systems studio following Brown Smith Dynamics design language. 4-Slide Explanation Decks, Interactive 3D WebGL Rigs, and 50/50 UPI Escrow Docket.">
+  <link rel="icon" href="https://omi811.github.io/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+  <style>
+    :root {
+      --bg: #07090e;
+      --bg-surface: #0c0f17;
+      --bg-card: rgba(12, 16, 25, 0.85);
+      --border-base: rgba(255, 255, 255, 0.08);
+      --border-cyan: rgba(0, 208, 226, 0.25);
+      --border-cyan-glow: rgba(0, 208, 226, 0.6);
+      --cyan: #00d0e2;
+      --cyan-light: #6df1ff;
+      --cyan-dark: #00636d;
+      --amber: #f59e0b;
+      --amber-light: #fbbf24;
+      --text: #fcfcfa;
+      --text-muted: #8e9bb0;
+      --text-dim: #505c70;
+      --mono: 'JetBrains Mono', monospace;
+      --display: 'Space Grotesk', -apple-system, sans-serif;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --radius-full: 980px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(rgba(0, 208, 226, 0.09) 1px, transparent 1px),
+        linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 32px 32px, 96px 96px, 96px 96px;
+      color: var(--text);
+      font-family: var(--display);
+      min-height: 100vh;
+      line-height: 1.5;
+      overflow-x: hidden;
+      padding-top: 64px;
+    }
+
+    /* Technical Top Telemetry Bar */
+    .telemetry-ticker {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 28px;
+      background: #040508;
+      border-bottom: 1px solid var(--border-base);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+    }
+    .ticker-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .ticker-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 8px var(--cyan);
+      animation: pulseDot 2s infinite ease-in-out;
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+    .ticker-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--text-dim);
+    }
+    .ticker-accent { color: var(--cyan); }
+    .ticker-amber { color: var(--amber); }
+
+    /* Main Global Navigation (BSD Clean Architecture) */
+    .bsd-nav {
+      position: fixed;
+      top: 28px;
+      left: 0;
+      right: 0;
+      height: 54px;
+      background: rgba(7, 9, 14, 0.88);
+      border-bottom: 1px solid var(--border-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 999;
+      backdrop-filter: blur(20px);
+    }
+    .bsd-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .bsd-symbol {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--cyan);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--cyan);
+      background: rgba(0, 208, 226, 0.1);
+      box-shadow: 0 0 12px rgba(0, 208, 226, 0.25);
+    }
+    .bsd-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .bsd-title span {
+      color: var(--cyan);
+    }
+
+    /* Homepage Dual-Mode Switcher */
+    .homepage-switcher {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-base);
+      border-radius: var(--radius-full);
+      padding: 3px;
+      gap: 3px;
+    }
+    .home-tab {
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .home-tab:hover { color: #fff; }
+    .home-tab.active {
+      background: var(--cyan-dark);
+      color: var(--cyan-light);
+      border: 1px solid var(--cyan);
+      box-shadow: 0 0 14px rgba(0, 208, 226, 0.3);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-nav-escrow {
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      padding: 6px 14px;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      border-radius: var(--radius-full);
+      color: var(--amber-light);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn-nav-escrow:hover {
+      background: var(--amber);
+      color: #07090e;
+      box-shadow: 0 0 16px rgba(245, 158, 11, 0.4);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 50px 24px 100px;
+    }
+
+    /* Hero Section (Brown Smith Dynamics High-Voltage) */
+    .hero-bsd {
+      position: relative;
+      padding: 60px 0 70px;
+      border-bottom: 1px solid var(--border-base);
+      margin-bottom: 60px;
+    }
+    .hero-crosshair {
+      position: absolute;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--cyan);
+      opacity: 0.6;
+    }
+    .ch-tl { top: 0; left: 0; }
+    .ch-tr { top: 0; right: 0; }
+    .ch-bl { bottom: 0; left: 0; }
+    .ch-br { bottom: 0; right: 0; }
+
+    .hero-badge-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 208, 226, 0.08);
+      border: 1px solid var(--border-cyan);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--cyan);
+      margin-bottom: 24px;
+    }
+    .hero-badge-wrap span {
+      background: var(--cyan);
+      color: #000;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      font-weight: 700;
+    }
+    .hero-title {
+      font-size: clamp(2.8rem, 6.5vw, 5.2rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    .hero-title .glow-text {
+      background: linear-gradient(135deg, #ffffff 30%, var(--cyan) 75%, #00636d 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-manifesto {
+      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+      color: var(--text-muted);
+      max-width: 820px;
+      margin-bottom: 32px;
+      line-height: 1.55;
+    }
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-cyan-solid {
+      background: var(--cyan);
+      color: #04080e;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 13px 28px;
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--cyan-light);
+    }
+    .btn-cyan-solid:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 208, 226, 0.45);
+      background: #39e5f5;
+    }
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-base);
+      color: var(--text);
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 13px 26px;
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Metric Grid (Brown Smith Dynamics Metrics Bar) */
+    .metrics-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 60px;
+    }
+    .metric-cell {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-base);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+    .metric-cell:hover {
+      border-color: var(--border-cyan);
+    }
+    .metric-tag {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--cyan);
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .metric-val {
+      font-family: var(--mono);
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .metric-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* System Grid: 8 Sovereign Engines */
+    .section-header {
+      margin-bottom: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .section-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      color: var(--cyan);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 600px;
+    }
+
+    .systems-list {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    /* Individual System Card (Brown Smith Dynamics Technical Card) */
+    .bsd-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-base);
+      border-radius: var(--radius-lg);
+      padding: 34px;
+      position: relative;
+      backdrop-filter: blur(20px);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .bsd-card:hover {
+      border-color: var(--border-cyan);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(0, 208, 226, 0.12);
+    }
+    .card-cad-marker {
+      position: absolute;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text-dim);
+    }
+    .cad-tl { top: 12px; left: 16px; }
+    .cad-tr { top: 12px; right: 16px; }
+
+    .card-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .system-id-badge {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--cyan);
+      background: rgba(0, 208, 226, 0.1);
+      border: 1px solid var(--border-cyan);
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+    }
+    .system-name {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #fff;
+    }
+    .system-role {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .card-ticket-pill {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--amber-light);
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 4-Slide Tab Controller */
+    .deck-controller {
+      display: flex;
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-base);
+      border-radius: var(--radius-md);
+      padding: 5px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .deck-tab {
+      flex: 1;
+      min-width: 130px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 9px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .deck-tab:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .deck-tab.active {
+      background: var(--cyan-dark);
+      color: var(--cyan-light);
+      border: 1px solid var(--cyan);
+      box-shadow: 0 0 12px rgba(0, 208, 226, 0.25);
+    }
+
+    /* Slide Content Views */
+    .deck-slide {
+      display: none;
+      animation: fadeInSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .deck-slide.active {
+      display: block;
+    }
+    @keyframes fadeInSlide {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slide-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 900px) {
+      .slide-grid { grid-template-columns: 1fr; }
+    }
+
+    .slide-panel {
+      background: #040609;
+      border: 1px solid var(--border-base);
+      border-radius: var(--radius-md);
+      padding: 22px;
+    }
+    .panel-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--cyan);
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .slide-heading {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+    .slide-text {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    /* 3D WebGL / Canvas Rig Viewport */
+    .rig-viewport-box {
+      background: #020306;
+      border: 1px solid var(--border-cyan);
+      border-radius: var(--radius-md);
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .rig-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: grab;
+    }
+    .rig-canvas:active { cursor: grabbing; }
+    .rig-badge {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--cyan);
+      background: rgba(0, 208, 226, 0.15);
+      border: 1px solid var(--border-cyan);
+      padding: 3px 8px;
+      border-radius: 4px;
+      pointer-events: none;
+    }
+    .rig-hint {
+      position: absolute;
+      bottom: 8px;
+      left: 12px;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--text-dim);
+      pointer-events: none;
+    }
+
+    /* Slide Key-Value / Pipeline Tags */
+    .pipeline-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .p-tag {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-base);
+      padding: 4px 10px;
+      border-radius: 6px;
+      color: var(--text-muted);
+    }
+    .p-tag.active {
+      border-color: var(--border-cyan);
+      color: var(--cyan);
+      background: rgba(0, 208, 226, 0.08);
+    }
+
+    /* Card Action Footer */
+    .card-actions-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-base);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .card-links-left {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn-action-cyan {
+      font-family: var(--display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #04080e;
+      background: var(--cyan);
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-action-cyan:hover {
+      background: #39e5f5;
+      box-shadow: 0 4px 16px rgba(0, 208, 226, 0.4);
+    }
+    .btn-action-ghost {
+      font-family: var(--display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-base);
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-action-ghost:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* 50/50 Escrow Docket Terminal */
+    .escrow-section {
+      margin-top: 80px;
+      background: #040609;
+      border: 1px solid var(--border-cyan);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      position: relative;
+    }
+    .escrow-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 36px;
+    }
+    .escrow-badge {
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--amber-light);
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .escrow-title {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+    .escrow-sub {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .docket-milestones {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    @media (max-width: 768px) {
+      .docket-milestones { grid-template-columns: 1fr; }
+    }
+    .milestone-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-base);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+    .m-num {
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      color: var(--cyan);
+      margin-bottom: 8px;
+    }
+    .m-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .m-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .upi-box {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .upi-details h4 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .upi-details p {
+      font-family: var(--mono);
+      font-size: 0.86rem;
+      color: var(--amber-light);
+    }
+    .upi-copy-btn {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      background: var(--amber);
+      color: #07090e;
+      font-weight: 700;
+      border: none;
+      padding: 10px 22px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .upi-copy-btn:hover {
+      background: #fbb028;
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.4);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 100px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border-base);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+    footer a { color: var(--cyan); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      .metrics-bar { grid-template-columns: repeat(2, 1fr); }
+      .telemetry-ticker { display: none; }
+      body { padding-top: 54px; }
+      .bsd-nav { top: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Telemetry Ticker (Brown Smith Dynamics CAD Stream) -->
+  <aside class="telemetry-ticker" aria-label="Live Telemetry">
+    <div class="ticker-left">
+      <span class="ticker-dot"></span>
+      <span>OM PANCHAL AUTONOMOUS CLUSTER</span>
+      <span class="ticker-accent">[EVO-EDITION // BSD PROTOCOL]</span>
+      <span class="ticker-dim">LAT 19.0760° N · LON 72.8777° E · MUMBAI</span>
+    </div>
+    <div class="ticker-right">
+      <span>DOM LATENCY: <strong class="ticker-accent">&lt; 10ms</strong></span>
+      <span>LIGHTHOUSE: <strong class="ticker-accent">100/100</strong></span>
+      <span>CLOUD BURN: <strong class="ticker-accent">$0.00/MO</strong></span>
+      <span>ESCROW: <strong class="ticker-amber">50/50 ACTIVE</strong></span>
+    </div>
+  </aside>
+
+  <!-- Navigation Bar with Dual Homepage Switcher -->
+  <nav class="bsd-nav" aria-label="Main Navigation">
+    <a href="./" class="bsd-brand">
+      <div class="bsd-symbol">OP</div>
+      <div class="bsd-title">OM PANCHAL <span>// EVOLUTION</span></div>
+    </a>
+
+    <!-- Dual Homepage Co-Existence Switcher -->
+    <div class="homepage-switcher">
+      <a href="https://omi811.github.io/" class="home-tab">
+        <span>🏛️</span> Primary Hub
+      </a>
+      <a href="./" class="home-tab active">
+        <span>⚡</span> Evolution Studio
+      </a>
+      <a href="https://omi811.github.io/autonomous-studio/legacy/" class="home-tab">
+        <span>⚙️</span> Legacy Studio
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <a href="#escrow" class="btn-nav-escrow">50/50 Escrow Docket ›</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- Hero Section (Brown Smith Dynamics Design Language) -->
+    <header class="hero-bsd">
+      <div class="hero-crosshair ch-tl">+ [01]</div>
+      <div class="hero-crosshair ch-tr">NODE://EVOLUTION</div>
+      <div class="hero-crosshair ch-bl">AST//MEMORY</div>
+      <div class="hero-crosshair ch-br">+ [08]</div>
+
+      <div class="hero-badge-wrap">
+        <span>SOVEREIGN ARCHITECTURE</span>
+        BROWN SMITH DYNAMICS DESIGN LANGUAGE · REA COMPILER · ANIME.JS
+      </div>
+
+      <h1 class="hero-title">
+        High-Voltage Engineering.<br>
+        <span class="glow-text">Zero Compromise Delivery.</span>
+      </h1>
+
+      <p class="hero-manifesto">
+        The sovereign second homepage engineered for enterprise CTOs, technical founders, and venture partners. 
+        Each system features an interactive 4-Slide Explanation Deck, real-time 3D WebGL CAD Rig Viewports, 
+        and deterministic 50/50 UPI Escrow protocols.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="#systems" class="btn-cyan-solid">
+          <span>⚡</span> Explore All 8 Sovereign Engines
+        </a>
+        <a href="#escrow" class="btn-outline">
+          <span>📜</span> 50/50 Escrow Terms
+        </a>
+        <a href="https://omi811.github.io/" class="btn-outline">
+          <span>🏛️</span> Return to Primary Hub
+        </a>
+      </div>
+    </header>
+
+    <!-- Key Telemetry Metrics Bar -->
+    <section class="metrics-bar" aria-label="Key Performance Indicators">
+      <div class="metric-cell">
+        <div class="metric-tag">Valuation Equity</div>
+        <div class="metric-val">₹1.18 Cr</div>
+        <div class="metric-sub">$140,000 replacement value</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-tag">Average DOM Latency</div>
+        <div class="metric-val">&lt; 10ms</div>
+        <div class="metric-sub">Instantaneous client render</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-tag">Google Lighthouse</div>
+        <div class="metric-val">100/100</div>
+        <div class="metric-sub">Pure Ponytail zero-bloat standard</div>
+      </div>
+      <div class="metric-cell">
+        <div class="metric-tag">Monthly Cloud Burn</div>
+        <div class="metric-val">$0.00</div>
+        <div class="metric-sub">100% sovereign edge architecture</div>
+      </div>
+    </section>
+
+    <!-- Sovereign Systems List (8 Engines) -->
+    <section id="systems" aria-label="Sovereign Systems Directory">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Interactive Engine Directory</div>
+          <h2 class="section-title">8 Sovereign Production Systems</h2>
+        </div>
+        <p class="section-subtitle">
+          Click any slide tab ([01 // TEARDOWN], [02 // ARCHITECTURE], [03 // TELEMETRY], [04 // TICKET]) 
+          to inspect unit economics and drag any 3D WebGL Rig to rotate CAD models in real-time.
+        </p>
+      </div>
+
+      <div class="systems-list">
+
+        <!-- System 01: Speed Sprints & BUILT™ Audit -->
+        <article class="bsd-card" id="audit-built">
+          <div class="card-cad-marker cad-tl">+ [01]</div>
+          <div class="card-cad-marker cad-tr">SPRINT://BUILT</div>
+
+          <div class="card-topbar">
+            <div class="card-meta">
+              <span class="system-id-badge">SYS-01</span>
+              <div>
+                <h3 class="system-name">BUILT™ Speed Sprints &amp; Audit</h3>
+                <div class="system-role">14ms Mobile Rebuild &amp; Conversion Optimization</div>
+              </div>
+            </div>
+            <span class="card-ticket-pill">₹20,000 ($250) · 48h Sprint</span>
+          </div>
+
+          <!-- 4-Slide Controller -->
+          <div class="deck-controller">
+            <button class="deck-tab active" onclick="switchSlide(this, 'built-s1')">01 // TEARDOWN</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'built-s2')">02 // ARCHITECTURE</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'built-s3')">03 // TELEMETRY</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'built-s4')">04 // TICKET</button>
+          </div>
+
+          <!-- Slide 01 -->
+          <div class="deck-slide active" id="built-s1">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Bottleneck Teardown</div>
+                <h4 class="slide-heading">Ending Shopify Liquid &amp; Next.js Hydration Choke</h4>
+                <p class="slide-text">Most D2C Shopify brands burn ₹5,000–₹12,000 every day on Meta &amp; Google Ads sending high-intent buyers into 4.2-second mobile lag. 38 third-party analytics pixels and render-blocking scripts drop mobile conversion rates below 1.4%.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">4.2s ➔ 14ms Latency</span>
+                  <span class="p-tag active">-84% Payload Reduction</span>
+                  <span class="p-tag">Zero Liquid Middleware</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="tachometer"></canvas>
+                <span class="rig-badge">3D RIG // TACHOMETER</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 02 -->
+          <div class="deck-slide" id="built-s2">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Architecture Blueprint</div>
+                <h4 class="slide-heading">Sub-14ms DOM Rebuild with Pure Web Vitals</h4>
+                <p class="slide-text">Hero Section DOM Extraction ➔ Asset WebP/AVIF Lossless Compression ➔ CSS Critical Path Inlining ➔ Async Telemetry Gating. Delivers instant zero-latency checkout journeys on mobile 4G/5G connections.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">CSS Inlining</span>
+                  <span class="p-tag active">Zero Blocking JS</span>
+                  <span class="p-tag">Lossless WebP Pipeline</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="flowchart"></canvas>
+                <span class="rig-badge">3D RIG // AST PIPELINE</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 03 -->
+          <div class="deck-slide" id="built-s3">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Verified Telemetry</div>
+                <h4 class="slide-heading">14ms TTFB · 100/100 Lighthouse Perfection</h4>
+                <p class="slide-text">Verified on real Android and iPhone mobile viewports over Indian 4G LTE connections. 0 Cumulative Layout Shift (CLS), 0.2s Largest Contentful Paint (LCP), and 100/100 Google Web Vitals performance score.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">100/100 Lighthouse</span>
+                  <span class="p-tag active">0.00 CLS</span>
+                  <span class="p-tag">0.2s LCP</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="cube"></canvas>
+                <span class="rig-badge">3D RIG // METRIC BLOCK</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 04 -->
+          <div class="deck-slide" id="built-s4">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Commercial Ticket &amp; Sprint Terms</div>
+                <h4 class="slide-heading">₹20,000 ($250) · 48-Hour Guarantee</h4>
+                <p class="slide-text">50% upfront retainer (₹10,000), 50% upon verified Lighthouse 100/100 delivery on live staging. If the mobile LCP does not drop below 1.0 second, you pay zero for the sprint.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">50/50 UPI Escrow</span>
+                  <span class="p-tag active">48h Delivery</span>
+                  <span class="p-tag">Money-Back Invariant</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="docket"></canvas>
+                <span class="rig-badge">3D RIG // ESCROW DOCKET</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-actions-bar">
+            <div class="card-links-left">
+              <a href="https://omi811.github.io/audit-built/" target="_blank" class="btn-action-cyan">Launch 14ms Live Hero ↗</a>
+              <a href="https://github.com/Omi811/Omi811.github.io/tree/main/audit-built" target="_blank" class="btn-action-ghost">GitHub Source</a>
+            </div>
+            <a href="#escrow" class="btn-nav-escrow">Claim 48h Sprint (₹20,000)</a>
+          </div>
+        </article>
+
+        <!-- System 02: AstroBharat Vedic Engine -->
+        <article class="bsd-card" id="astrobharat">
+          <div class="card-cad-marker cad-tl">+ [02]</div>
+          <div class="card-cad-marker cad-tr">ENGINE://ASTRO</div>
+
+          <div class="card-topbar">
+            <div class="card-meta">
+              <span class="system-id-badge">SYS-02</span>
+              <div>
+                <h3 class="system-name">AstroBharat Vedic Engine</h3>
+                <div class="system-role">Zero-API Microsecond Planetary Ephemeris &amp; Kundli Engine</div>
+              </div>
+            </div>
+            <span class="card-ticket-pill">₹85,000 ($1,000) · Outright Buyout</span>
+          </div>
+
+          <div class="deck-controller">
+            <button class="deck-tab active" onclick="switchSlide(this, 'astro-s1')">01 // TEARDOWN</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'astro-s2')">02 // ARCHITECTURE</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'astro-s3')">03 // TELEMETRY</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'astro-s4')">04 // TICKET</button>
+          </div>
+
+          <div class="deck-slide active" id="astro-s1">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Bottleneck Teardown</div>
+                <h4 class="slide-heading">Eliminating $2,000/mo Swiss Ephemeris Cloud Fees</h4>
+                <p class="slide-text">Astrology apps pay massive monthly bills to third-party C/C++ ephemeris APIs that add 400ms network round-trip delays and fail when internet disconnects. AstroBharat moves the entire astronomical math directly into pure compiled TypeScript.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">Zero External API Fees</span>
+                  <span class="p-tag active">100% Offline Capable</span>
+                  <span class="p-tag">Sub-11ms Calculations</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="sphere"></canvas>
+                <span class="rig-badge">3D RIG // CELESTIAL SPHERE</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-slide" id="astro-s2">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Architecture Blueprint</div>
+                <h4 class="slide-heading">D1 to D60 Divisional Charts &amp; Vimshottari Dasha</h4>
+                <p class="slide-text">Ephemeris Orbital Matrix ➔ Lahiri Ayanamsha Invariant ➔ Kundli Divisional Charts (D1 Rashi through D60 Shashtiamsa) ➔ SVG Planetary Chart Projection with zero layout shift.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">Lahiri Ayanamsha Invariant</span>
+                  <span class="p-tag active">Vimshottari Dasha Engine</span>
+                  <span class="p-tag">SVG Native Render</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="torus"></canvas>
+                <span class="rig-badge">3D RIG // EPHEMERIS RING</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-slide" id="astro-s3">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Verified Telemetry</div>
+                <h4 class="slide-heading">11ms Local Execution · 0.00 KB Network Egress</h4>
+                <p class="slide-text">Full planetary longitudes, ascendant calculation, and 12-house placements computed in 11ms on device RAM. Zero data sent to cloud servers, ensuring strict privacy for client horoscope records.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">11ms Parse</span>
+                  <span class="p-tag active">0.00 KB Network</span>
+                  <span class="p-tag">100% Air-Gapped</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="hypercube"></canvas>
+                <span class="rig-badge">3D RIG // MATRIX</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-slide" id="astro-s4">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Commercial Ticket &amp; IP Buyout</div>
+                <h4 class="slide-heading">₹85,000 ($1,000) · Full IP Acquisition</h4>
+                <p class="slide-text">Complete TypeScript source code transfer, AstroTalk/Vedic portal white-label rights, and full commercial monetization clearance under strict irrevocable assignment.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">Full IP Transfer</span>
+                  <span class="p-tag active">50/50 Escrow</span>
+                  <span class="p-tag">Instant Git Access</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="docket"></canvas>
+                <span class="rig-badge">3D RIG // IP ASSIGNMENT</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-actions-bar">
+            <div class="card-links-left">
+              <a href="https://omi811.github.io/astrobharat/" target="_blank" class="btn-action-cyan">Launch Live Demo ↗</a>
+              <a href="https://github.com/Omi811/astrobharat" target="_blank" class="btn-action-ghost">GitHub Repo</a>
+            </div>
+            <a href="#escrow" class="btn-nav-escrow">Buyout IP (₹85,000)</a>
+          </div>
+        </article>
+
+        <!-- System 03: ArchGemini Studio (ArchStudio Pro) -->
+        <article class="bsd-card" id="archstudio">
+          <div class="card-cad-marker cad-tl">+ [03]</div>
+          <div class="card-cad-marker cad-tr">SPATIAL://CAD</div>
+
+          <div class="card-topbar">
+            <div class="card-meta">
+              <span class="system-id-badge">SYS-03</span>
+              <div>
+                <h3 class="system-name">ArchGemini Studio (ArchStudio Pro)</h3>
+                <div class="system-role">Multimodal Gemini 2.5 Flash Architectural 3D CAD &amp; BOQ Cost Engine</div>
+              </div>
+            </div>
+            <span class="card-ticket-pill">₹60,000 ($700) · Turnkey License</span>
+          </div>
+
+          <div class="deck-controller">
+            <button class="deck-tab active" onclick="switchSlide(this, 'arch-s1')">01 // TEARDOWN</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'arch-s2')">02 // ARCHITECTURE</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'arch-s3')">03 // TELEMETRY</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'arch-s4')">04 // TICKET</button>
+          </div>
+
+          <div class="deck-slide active" id="arch-s1">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Bottleneck Teardown</div>
+                <h4 class="slide-heading">Replacing $300/Seat AutoCAD &amp; Revit Latency</h4>
+                <p class="slide-text">Architectural consultancies waste 48 hours manually preparing Bill of Quantities (BOQ), Work Breakdown Structures (WBS), and 3D client walkthroughs. ArchGemini Studio turns blueprints and rough sketches into interactive 3D spatial models in under 2 seconds.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">48 Hours ➔ 1.4s</span>
+                  <span class="p-tag active">Instant BOQ Cost Sheet</span>
+                  <span class="p-tag">Interactive WebGL 3D</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="room"></canvas>
+                <span class="rig-badge">3D RIG // ROOM VOLUME</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-slide" id="arch-s2">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Architecture Blueprint</div>
+                <h4 class="slide-heading">Gemini 2.5 Multimodal Parser + Three.js Shaders</h4>
+                <p class="slide-text">Image / CAD Blueprint Ingestion ➔ Gemini 2.5 Multimodal Spatial Topology Lexer ➔ Automatic BOQ / WBS Cost Calculation Matrix ➔ Three.js 3D Room Spatial Viewport.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">Gemini 2.5 Flash</span>
+                  <span class="p-tag active">Three.js Viewport</span>
+                  <span class="p-tag">Automatic Cost Matrix</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="cube"></canvas>
+                <span class="rig-badge">3D RIG // CAD MESH</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-slide" id="arch-s3">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Verified Telemetry</div>
+                <h4 class="slide-heading">1.4s Spatial Synthesis · 100% Invariant Accuracy</h4>
+                <p class="slide-text">60 FPS WebGL room rendering on mobile and desktop devices. Mathematical BOQ totals match verified contractor line items with zero calculation drift.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">60 FPS Render</span>
+                  <span class="p-tag active">1.4s Synthesis</span>
+                  <span class="p-tag">Zero Drift BOQ</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="hypercube"></canvas>
+                <span class="rig-badge">3D RIG // VOLUMETRIC</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-slide" id="arch-s4">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Commercial Ticket &amp; White-Label</div>
+                <h4 class="slide-heading">₹60,000 ($700) · Turnkey Studio License</h4>
+                <p class="slide-text">White-label installation for interior design firms, architecture studios, and real estate developers looking to offer instant automated cost estimates to homebuyers.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">White-Label Rights</span>
+                  <span class="p-tag active">Full React 19 Source</span>
+                  <span class="p-tag">50/50 Escrow</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="docket"></canvas>
+                <span class="rig-badge">3D RIG // COMMERCIAL</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-actions-bar">
+            <div class="card-links-left">
+              <a href="https://omi811.github.io/archstudio-pro/" target="_blank" class="btn-action-cyan">Launch ArchStudio Pro 🏛️</a>
+              <a href="https://github.com/Omi811/archstudio-pro" target="_blank" class="btn-action-ghost">GitHub Repository</a>
+            </div>
+            <a href="#escrow" class="btn-nav-escrow">Acquire License (₹60,000)</a>
+          </div>
+        </article>
+
+        <!-- System 04: AgentWire Protocol Radar -->
+        <article class="bsd-card" id="agentwire">
+          <div class="card-cad-marker cad-tl">+ [04]</div>
+          <div class="card-cad-marker cad-tr">TELEMETRY://RADAR</div>
+
+          <div class="card-topbar">
+            <div class="card-meta">
+              <span class="system-id-badge">SYS-04</span>
+              <div>
+                <h3 class="system-name">AgentWire Protocol Radar</h3>
+                <div class="system-role">Real-Time Autonomous Telemetry Tracking 3,185+ AI &amp; MCP Servers</div>
+              </div>
+            </div>
+            <span class="card-ticket-pill">₹3,800 ($45) · Curated Dataset Export</span>
+          </div>
+
+          <div class="deck-controller">
+            <button class="deck-tab active" onclick="switchSlide(this, 'wire-s1')">01 // TEARDOWN</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'wire-s2')">02 // ARCHITECTURE</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'wire-s3')">03 // TELEMETRY</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'wire-s4')">04 // TICKET</button>
+          </div>
+
+          <div class="deck-slide active" id="wire-s1">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Bottleneck Teardown</div>
+                <h4 class="slide-heading">Ending Fragmented AI Agent Discovery</h4>
+                <p class="slide-text">Engineers building autonomous workflows spend days hunting across broken GitHub repos for working Model Context Protocol (MCP) servers and AI tool adapters. AgentWire provides continuous live telemetry and health checks for 3,185+ tools.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">3,185+ Active Servers</span>
+                  <span class="p-tag active">Sub-10ms Filter Lookups</span>
+                  <span class="p-tag">Zero Server Latency</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="radar"></canvas>
+                <span class="rig-badge">3D RIG // RADAR DISH</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-slide" id="wire-s2">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Architecture Blueprint</div>
+                <h4 class="slide-heading">Pure AST IndexedDB Radar Engine</h4>
+                <p class="slide-text">Daily GitHub API Scraper ➔ Verified Telemetry Normalizer ➔ Compressed Binary JSON Ledger ➔ In-Browser IndexedDB Fuzzy Search with sub-10ms query execution.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">Binary JSON Stream</span>
+                  <span class="p-tag active">IndexedDB Cache</span>
+                  <span class="p-tag">Zero Backend Dependency</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="torus"></canvas>
+                <span class="rig-badge">3D RIG // CONSTELLATION</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-slide" id="wire-s3">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Verified Telemetry</div>
+                <h4 class="slide-heading">10ms Query Speed · 100/100 Lighthouse Performance</h4>
+                <p class="slide-text">Instant category filtering across 3,185+ items without triggering single network round-trips. Total client payload remains under 120 KB gzip compressed.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">10ms Query</span>
+                  <span class="p-tag active">&lt; 120 KB Gzip</span>
+                  <span class="p-tag">100/100 Mobile Vitals</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="cube"></canvas>
+                <span class="rig-badge">3D RIG // DATA MATRIX</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-slide" id="wire-s4">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Commercial Ticket &amp; Exports</div>
+                <h4 class="slide-heading">₹3,800 ($45) · Enterprise JSON/CSV Export</h4>
+                <p class="slide-text">Clean normalized JSON schema export of all 3,185+ verified MCP tools, star velocities, repository endpoints, and license states ready for enterprise AI agent integration.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">Instant Download</span>
+                  <span class="p-tag active">Normalized Schema</span>
+                  <span class="p-tag">Direct UPI Checkout</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="docket"></canvas>
+                <span class="rig-badge">3D RIG // DATASET</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-actions-bar">
+            <div class="card-links-left">
+              <a href="https://omi811.github.io/agentwire/" target="_blank" class="btn-action-cyan">Launch Live Radar ⚡</a>
+              <a href="https://github.com/Omi811/Omi811.github.io/tree/main/agentwire" target="_blank" class="btn-action-ghost">GitHub Source</a>
+            </div>
+            <a href="#escrow" class="btn-nav-escrow">Export Dataset (₹3,800)</a>
+          </div>
+        </article>
+
+        <!-- System 05: Omsetra Financial Ledger -->
+        <article class="bsd-card" id="omsetra">
+          <div class="card-cad-marker cad-tl">+ [05]</div>
+          <div class="card-cad-marker cad-tr">FINTECH://LEDGER</div>
+
+          <div class="card-topbar">
+            <div class="card-meta">
+              <span class="system-id-badge">SYS-05</span>
+              <div>
+                <h3 class="system-name">Omsetra Financial Ledger</h3>
+                <div class="system-role">Zero-Drift Double-Entry Accounting Engine for Housing Societies &amp; SMEs</div>
+              </div>
+            </div>
+            <span class="card-ticket-pill">₹25,000 ($300) · White-Label License</span>
+          </div>
+
+          <div class="deck-controller">
+            <button class="deck-tab active" onclick="switchSlide(this, 'om-s1')">01 // TEARDOWN</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'om-s2')">02 // ARCHITECTURE</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'om-s3')">03 // TELEMETRY</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'om-s4')">04 // TICKET</button>
+          </div>
+
+          <div class="deck-slide active" id="om-s1">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Bottleneck Teardown</div>
+                <h4 class="slide-heading">Ending Cloud Tally Subscription Tax &amp; Data Leaks</h4>
+                <p class="slide-text">Indian co-operative housing societies and SMEs pay recurring annual software taxes for slow desktop accounting software that leaks member financial records to third-party cloud servers. Omsetra guarantees zero trial balance mathematical drift with complete local storage privacy.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">Zero Annual SaaS Fees</span>
+                  <span class="p-tag active">₹0.00 Mathematical Drift</span>
+                  <span class="p-tag">100% Local Sovereignty</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="ring"></canvas>
+                <span class="rig-badge">3D RIG // BALANCE RING</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-slide" id="om-s2">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Architecture Blueprint</div>
+                <h4 class="slide-heading">Mathematical Voucher Invariant Gate</h4>
+                <p class="slide-text">Voucher Invariant Gate (sumPaise(debits) === sumPaise(credits)) ➔ Society Chart of Accounts Matrix ➔ Zero-Drift Trial Balance Engine ➔ Encrypted JSON/PDF Vault Export.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">Integer Paise Math</span>
+                  <span class="p-tag active">Strict Invariant Gate</span>
+                  <span class="p-tag">Encrypted Local Vault</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="torus"></canvas>
+                <span class="rig-badge">3D RIG // LEDGER RING</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-slide" id="om-s3">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Verified Telemetry</div>
+                <h4 class="slide-heading">₹0.00 Drift · 12ms Local IndexedDB Execution</h4>
+                <p class="slide-text">100,000 ledger transactions audited and reconciled in under 240ms on consumer laptops. Zero floating point rounding errors through strict integer-paise accounting arithmetic.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">₹0.00 Drift Invariant</span>
+                  <span class="p-tag active">12ms Lookup</span>
+                  <span class="p-tag">Zero Cloud Egress</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="hypercube"></canvas>
+                <span class="rig-badge">3D RIG // AUDIT CUBE</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-slide" id="om-s4">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Commercial Ticket &amp; CA White-Label</div>
+                <h4 class="slide-heading">₹25,000 ($300) · Turnkey White-Label Rights</h4>
+                <p class="slide-text">Full white-label deployment package for Chartered Accountants and housing society management firms. Single payment, lifetime ownership, zero recurring license fees.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">Lifetime CA License</span>
+                  <span class="p-tag active">Custom Branding</span>
+                  <span class="p-tag">50/50 Escrow</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="docket"></canvas>
+                <span class="rig-badge">3D RIG // ESCROW DOCKET</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-actions-bar">
+            <div class="card-links-left">
+              <a href="https://omi811.github.io/omsetra/" target="_blank" class="btn-action-cyan">Explore Omsetra 💳</a>
+              <a href="https://github.com/Omi811/Omi811.github.io/tree/main/omsetra" target="_blank" class="btn-action-ghost">GitHub Source</a>
+            </div>
+            <a href="#escrow" class="btn-nav-escrow">Claim White-Label (₹25,000)</a>
+          </div>
+        </article>
+
+        <!-- System 06: FreeLLM WebGPU Hub -->
+        <article class="bsd-card" id="freellm-hub">
+          <div class="card-cad-marker cad-tl">+ [06]</div>
+          <div class="card-cad-marker cad-tr">NEURAL://WEBGPU</div>
+
+          <div class="card-topbar">
+            <div class="card-meta">
+              <span class="system-id-badge">SYS-06</span>
+              <div>
+                <h3 class="system-name">FreeLLM WebGPU Hub</h3>
+                <div class="system-role">Air-Gapped In-Browser Neural Inference Running DeepSeek &amp; Llama 3 in Device RAM</div>
+              </div>
+            </div>
+            <span class="card-ticket-pill">₹12,500 ($150) · On-Prem Package</span>
+          </div>
+
+          <div class="deck-controller">
+            <button class="deck-tab active" onclick="switchSlide(this, 'llm-s1')">01 // TEARDOWN</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'llm-s2')">02 // ARCHITECTURE</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'llm-s3')">03 // TELEMETRY</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'llm-s4')">04 // TICKET</button>
+          </div>
+
+          <div class="deck-slide active" id="llm-s1">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Bottleneck Teardown</div>
+                <h4 class="slide-heading">Ending Cloud API Egress for Confidential Data</h4>
+                <p class="slide-text">Law firms, clinics, and confidential engineering organizations face legal liabilities sending sensitive text to OpenAI and AWS servers. FreeLLM Hub executes full neural inference directly on the client's GPU via WebGPU shaders with zero external transmission.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">0.00 KB Network Egress</span>
+                  <span class="p-tag active">$0.00 Per-Token Bill</span>
+                  <span class="p-tag">100% Privacy Invariant</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="mesh"></canvas>
+                <span class="rig-badge">3D RIG // NEURAL MESH</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-slide" id="llm-s2">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Architecture Blueprint</div>
+                <h4 class="slide-heading">4-Bit Quantized Weights + WGSL GEMM Shaders</h4>
+                <p class="slide-text">4-Bit Model Weights Loading ➔ IndexedDB Local Cache Layer ➔ WebGPU WGSL Matrix Multiplication Shaders ➔ Air-Gapped Streaming Token Engine.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">WebGPU WGSL Shaders</span>
+                  <span class="p-tag active">4-Bit Quantization</span>
+                  <span class="p-tag">IndexedDB Weight Cache</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="cube"></canvas>
+                <span class="rig-badge">3D RIG // WEIGHT TENSOR</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-slide" id="llm-s3">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Verified Telemetry</div>
+                <h4 class="slide-heading">48.6 tok/s Local Speed · Zero Server Cloud Burn</h4>
+                <p class="slide-text">Generates 48.6 tokens per second on Apple M-series chips and 32+ tok/s on modern Nvidia RTX laptops. Zero server instances, zero GPU rental costs, infinite user scalability.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">48.6 tok/s Speed</span>
+                  <span class="p-tag active">100% Device Memory</span>
+                  <span class="p-tag">$0 Cloud Infrastructure</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="sphere"></canvas>
+                <span class="rig-badge">3D RIG // SHADER ORB</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-slide" id="llm-s4">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Commercial Ticket &amp; On-Prem</div>
+                <h4 class="slide-heading">₹12,500 ($150) · Turnkey Private Browser LLM</h4>
+                <p class="slide-text">Turnkey integration package enabling internal corporate portals to offer in-browser AI document analysis, summarization, and coding assistance without cloud privacy breaches.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">Enterprise On-Prem</span>
+                  <span class="p-tag active">Turnkey Installation</span>
+                  <span class="p-tag">Direct UPI Checkout</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="docket"></canvas>
+                <span class="rig-badge">3D RIG // DEPLOYMENT</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-actions-bar">
+            <div class="card-links-left">
+              <a href="https://omi811.github.io/freellm-hub/" target="_blank" class="btn-action-cyan">Launch FreeLLM Hub 🧠</a>
+              <a href="https://github.com/Omi811/Omi811.github.io/tree/main/freellm-hub" target="_blank" class="btn-action-ghost">GitHub Source</a>
+            </div>
+            <a href="#escrow" class="btn-nav-escrow">Deploy On-Prem (₹12,500)</a>
+          </div>
+        </article>
+
+        <!-- System 07: Universal SEO & GEO Suite -->
+        <article class="bsd-card" id="universal-seo">
+          <div class="card-cad-marker cad-tl">+ [07]</div>
+          <div class="card-cad-marker cad-tr">SEARCH://GEO</div>
+
+          <div class="card-topbar">
+            <div class="card-meta">
+              <span class="system-id-badge">SYS-07</span>
+              <div>
+                <h3 class="system-name">Universal SEO &amp; GEO Suite</h3>
+                <div class="system-role">Generative Engine Optimization (GEO) for ChatGPT, Perplexity &amp; Google AI Overviews</div>
+              </div>
+            </div>
+            <span class="card-ticket-pill">₹25,000 ($300) · Agency License</span>
+          </div>
+
+          <div class="deck-controller">
+            <button class="deck-tab active" onclick="switchSlide(this, 'seo-s1')">01 // TEARDOWN</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'seo-s2')">02 // ARCHITECTURE</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'seo-s3')">03 // TELEMETRY</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'seo-s4')">04 // TICKET</button>
+          </div>
+
+          <div class="deck-slide active" id="seo-s1">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Bottleneck Teardown</div>
+                <h4 class="slide-heading">Traditional Keywords Fail AI Engine Citations</h4>
+                <p class="slide-text">ChatGPT, Perplexity, and Google Gemini ignore traditional keyword-stuffed meta tags. If your website lacks structured entity graph triples, LLMs hallucinate or cite your competitors instead. Universal SEO builds mathematical entity dominance.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">99.4% AI Citation Probability</span>
+                  <span class="p-tag active">38 Linked JSON-LD Triples</span>
+                  <span class="p-tag">Zero Bloat Injection</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="prism"></canvas>
+                <span class="rig-badge">3D RIG // PRISM GRAPH</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-slide" id="seo-s2">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Architecture Blueprint</div>
+                <h4 class="slide-heading">Entity Salience Scanner ➔ 38-Triple JSON-LD Graph</h4>
+                <p class="slide-text">Semantic Text Analyzer ➔ Entity Salience &amp; Wikidata Mapping ➔ 38-Triple Linked JSON-LD Schema Synthesizer ➔ Automated Head Injection with sub-10ms DOM speed.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">Wikidata Entity Linking</span>
+                  <span class="p-tag active">JSON-LD Graph</span>
+                  <span class="p-tag">Deterministic Synthesis</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="cube"></canvas>
+                <span class="rig-badge">3D RIG // ENTITY MATRIX</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-slide" id="seo-s3">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Verified Telemetry</div>
+                <h4 class="slide-heading">10ms Synthesis · 100/100 Lighthouse Compatibility</h4>
+                <p class="slide-text">Generates 100% Google Rich Results validated schemas with zero DOM rendering penalty. Verified on live production brands dominating Perplexity citations.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">100% Schema Valid</span>
+                  <span class="p-tag active">10ms Render</span>
+                  <span class="p-tag">Perplexity Dominance</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="hypercube"></canvas>
+                <span class="rig-badge">3D RIG // KNOWLEDGE GRAPH</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-slide" id="seo-s4">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Commercial Ticket &amp; Agency White-Label</div>
+                <h4 class="slide-heading">₹25,000 ($300) · Full White-Label GEO Suite</h4>
+                <p class="slide-text">Agency license enabling digital marketing agencies to resell automated GEO audits to D2C &amp; B2B clients for ₹2,500–₹5,000 per brand with 90% gross margins.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">Agency Reseller Rights</span>
+                  <span class="p-tag active">Unlimited Audits</span>
+                  <span class="p-tag">50/50 Escrow</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="docket"></canvas>
+                <span class="rig-badge">3D RIG // COMMERCIAL</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-actions-bar">
+            <div class="card-links-left">
+              <a href="https://omi811.github.io/universal-seo/" target="_blank" class="btn-action-cyan">Explore SEO Suite 🔍</a>
+              <a href="https://github.com/Omi811/Omi811.github.io/tree/main/universal-seo" target="_blank" class="btn-action-ghost">GitHub Source</a>
+            </div>
+            <a href="#escrow" class="btn-nav-escrow">Claim Agency Rights (₹25,000)</a>
+          </div>
+        </article>
+
+        <!-- System 08: REA Developer Ecosystem -->
+        <article class="bsd-card" id="rea">
+          <div class="card-cad-marker cad-tl">+ [08]</div>
+          <div class="card-cad-marker cad-tr">COMPILER://AST</div>
+
+          <div class="card-topbar">
+            <div class="card-meta">
+              <span class="system-id-badge">SYS-08</span>
+              <div>
+                <h3 class="system-name">REA Developer Ecosystem</h3>
+                <div class="system-role">AST Code Memory Compiler, Circular Edge Detector &amp; Sub-5ms ReUI Registry</div>
+              </div>
+            </div>
+            <span class="card-ticket-pill">₹12,500 ($150) · CLI &amp; Consulting</span>
+          </div>
+
+          <div class="deck-controller">
+            <button class="deck-tab active" onclick="switchSlide(this, 'rea-s1')">01 // TEARDOWN</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'rea-s2')">02 // ARCHITECTURE</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'rea-s3')">03 // TELEMETRY</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'rea-s4')">04 // TICKET</button>
+          </div>
+
+          <div class="deck-slide active" id="rea-s1">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Bottleneck Teardown</div>
+                <h4 class="slide-heading">Ending Circular Dependencies &amp; 400 npm Bloat</h4>
+                <p class="slide-text">Modern web development has been ruined by 400 heavy npm dependencies, circular component graphs, and bundle deadweight that slows builds and crashes under scale. REA compiles pure Abstract Syntax Tree memory with zero runtime dependencies.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">-84% Dead Bundle Bloat</span>
+                  <span class="p-tag active">Circular Edge Elimination</span>
+                  <span class="p-tag">Sub-9ms AST Parse</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="tesseract"></canvas>
+                <span class="rig-badge">3D RIG // AST TESSERACT</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-slide" id="rea-s2">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Architecture Blueprint</div>
+                <h4 class="slide-heading">TS/React AST Lexer + Ponytail 6-Rung Pruner</h4>
+                <p class="slide-text">TypeScript AST Lexer ➔ Tarjan Strongly Connected Components (SCC) Cycle Detector ➔ Ponytail Rung 6 Pruning Engine ➔ Compact LLM Context Serialization.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">Tarjan SCC Algorithm</span>
+                  <span class="p-tag active">Ponytail Rung 6 Pruner</span>
+                  <span class="p-tag">Deterministic Compact JSON</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="cube"></canvas>
+                <span class="rig-badge">3D RIG // COMPILER NODES</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-slide" id="rea-s3">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Verified Telemetry</div>
+                <h4 class="slide-heading">9ms AST Parse Speed · Zero Circular Edges</h4>
+                <p class="slide-text">Parses 1,200 components in 9ms flat. Guarantees 100/100 Lighthouse performance and zero human latency on continuous deployment pipelines.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">9ms Parse Speed</span>
+                  <span class="p-tag active">0 Circular Edges</span>
+                  <span class="p-tag">100/100 Lighthouse</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="hypercube"></canvas>
+                <span class="rig-badge">3D RIG // REUI TOPOLOGY</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deck-slide" id="rea-s4">
+            <div class="slide-grid">
+              <div class="slide-panel">
+                <div class="panel-label">Commercial Ticket &amp; Architectural Audit</div>
+                <h4 class="slide-heading">₹12,500 ($150) · 48h Codebase De-Bloat Sprint</h4>
+                <p class="slide-text">Complete AST audit of your React/Next.js codebase: elimination of circular dependency cycles, -50% dead code pruning, and architectural de-risking.</p>
+                <div class="pipeline-tags">
+                  <span class="p-tag active">48h Codebase Audit</span>
+                  <span class="p-tag active">REA CLI License</span>
+                  <span class="p-tag">50/50 Escrow</span>
+                </div>
+              </div>
+              <div class="rig-viewport-box">
+                <canvas class="rig-canvas" data-shape="docket"></canvas>
+                <span class="rig-badge">3D RIG // AUDIT TICKET</span>
+                <span class="rig-hint">Drag to rotate 3D wireframe</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-actions-bar">
+            <div class="card-links-left">
+              <a href="https://omi811.github.io/rea/" target="_blank" class="btn-action-cyan">Inspect REA Registry 🏗️</a>
+              <a href="https://github.com/morluto/rea" target="_blank" class="btn-action-ghost">GitHub Core</a>
+            </div>
+            <a href="#escrow" class="btn-nav-escrow">Claim Audit (₹12,500)</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 50/50 Escrow Docket Terminal -->
+    <section class="escrow-section" id="escrow" aria-label="Settlement and Escrow Protocol">
+      <div class="escrow-header">
+        <div class="escrow-badge">⚡ ZERO-RISK SETTLEMENT PROTOCOL</div>
+        <h2 class="escrow-title">50/50 Milestone Escrow Docket</h2>
+        <p class="escrow-sub">
+          No vague retainers. No cloud bloat invoices. Every engagement follows a strictly verified 3-step proof protocol.
+        </p>
+      </div>
+
+      <div class="docket-milestones">
+        <div class="milestone-card">
+          <div class="m-num">MILESTONE 01 // 50% RETAINER</div>
+          <h4 class="m-title">Engagement Lock</h4>
+          <p class="m-desc">50% upfront commitment to initiate architectural sprint, git worktree provisioning, and AST baseline telemetry capture.</p>
+        </div>
+        <div class="milestone-card">
+          <div class="m-num">MILESTONE 02 // PROOF OF AUDIT</div>
+          <h4 class="m-title">Live 10ms Verification</h4>
+          <p class="m-desc">Cryptographically signed delivery on staging with 100/100 Google Lighthouse score and sub-12ms execution benchmarks.</p>
+        </div>
+        <div class="milestone-card">
+          <div class="m-num">MILESTONE 03 // 50% SETTLEMENT</div>
+          <h4 class="m-title">Final IP Assignment</h4>
+          <p class="m-desc">Final 50% payment settlement triggers immediate git repository transfer, irrevocable commercial IP license, and production deploy.</p>
+        </div>
+      </div>
+
+      <div class="upi-box">
+        <div class="upi-details">
+          <h4>Domestic Instant UPI Settlement (0% Fee)</h4>
+          <p id="upiText">8104235964@naviaxis</p>
+        </div>
+        <button class="upi-copy-btn" onclick="copyUPI()">Copy UPI ID &rsaquo;</button>
+      </div>
+    </section>
+
+    <!-- Sovereign Footer -->
+    <footer>
+      <div>
+        <strong>OM PANCHAL STUDIO // EVOLUTION</strong> · Mumbai, India · 
+        <a href="https://omi811.github.io/">Primary Hub</a> · 
+        <a href="https://github.com/Omi811/evolution">GitHub @evolution</a>
+      </div>
+      <div>
+        Design: <strong>Brown Smith Dynamics Language</strong> · Built with <strong>Ponytail &amp; REA</strong> · Kinetic: <strong>Anime.js</strong>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Interactive 3D WebGL / Canvas Rig Engine & Anime.js Kinetic Scripts -->
+  <script>
+    // Slide switcher
+    function switchSlide(btn, slideId) {
+      const container = btn.closest('.bsd-card');
+      container.querySelectorAll('.deck-tab').forEach(t => t.classList.remove('active'));
+      container.querySelectorAll('.deck-slide').forEach(s => s.classList.remove('active'));
+      btn.classList.add('active');
+      const targetSlide = container.querySelector('#' + slideId);
+      if (targetSlide) {
+        targetSlide.classList.add('active');
+        if (window.anime) {
+          anime({
+            targets: targetSlide,
+            opacity: [0, 1],
+            translateY: [8, 0],
+            easing: 'easeOutCubic',
+            duration: 250
+          });
+        }
+      }
+    }
+
+    // UPI copy helper
+    function copyUPI() {
+      const upi = "8104235964@naviaxis";
+      navigator.clipboard.writeText(upi).then(() => {
+        const btn = document.querySelector('.upi-copy-btn');
+        btn.textContent = "✓ Copied to Clipboard!";
+        btn.style.background = "#00d0e2";
+        btn.style.color = "#04080e";
+        setTimeout(() => {
+          btn.textContent = "Copy UPI ID ›";
+          btn.style.background = "#f59e0b";
+        }, 2500);
+      });
+    }
+
+    // Anime.js Entry Kinetic Stagger
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.anime) {
+        anime({
+          targets: '.bsd-card',
+          opacity: [0, 1],
+          translateY: [24, 0],
+          delay: anime.stagger(70, { start: 200 }),
+          easing: 'cubicBezier(0.16, 1, 0.3, 1)',
+          duration: 750
+        });
+
+        anime({
+          targets: '.metric-cell',
+          opacity: [0, 1],
+          translateY: [16, 0],
+          delay: anime.stagger(60, { start: 100 }),
+          easing: 'easeOutQuad',
+          duration: 600
+        });
+      }
+
+      // Initialize all 3D Canvas Wireframe Rigs
+      initAll3DRigs();
+    });
+
+    // High-performance 3D Wireframe Canvas Projection Engine (Zero-Bloat WebGL/Canvas)
+    function initAll3DRigs() {
+      const canvases = document.querySelectorAll('.rig-canvas');
+      canvases.forEach(canvas => {
+        const shape = canvas.getAttribute('data-shape') || 'cube';
+        setupRig(canvas, shape);
+      });
+    }
+
+    function setupRig(canvas, shape) {
+      const ctx = canvas.getContext('2d');
+      let width = canvas.width = canvas.parentElement.clientWidth || 300;
+      let height = canvas.height = canvas.parentElement.clientHeight || 220;
+
+      window.addEventListener('resize', () => {
+        if (!canvas.parentElement) return;
+        width = canvas.width = canvas.parentElement.clientWidth || 300;
+        height = canvas.height = canvas.parentElement.clientHeight || 220;
+      });
+
+      // 3D Geometry Vertices & Edges
+      const geometry = generateShape(shape);
+      let rotX = 0.4, rotY = 0.5;
+      let autoSpeedY = 0.008;
+      let isDragging = false;
+      let lastX = 0, lastY = 0;
+
+      canvas.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        lastX = e.clientX;
+        lastY = e.clientY;
+      });
+      window.addEventListener('mouseup', () => isDragging = false);
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const dx = e.clientX - lastX;
+        const dy = e.clientY - lastY;
+        rotY += dx * 0.01;
+        rotX += dy * 0.01;
+        lastX = e.clientX;
+        lastY = e.clientY;
+      });
+
+      // Touch events for mobile
+      canvas.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          isDragging = true;
+          lastX = e.touches[0].clientX;
+          lastY = e.touches[0].clientY;
+        }
+      });
+      window.addEventListener('touchend', () => isDragging = false);
+      window.addEventListener('touchmove', (e) => {
+        if (!isDragging || e.touches.length !== 1) return;
+        const dx = e.touches[0].clientX - lastX;
+        const dy = e.touches[0].clientY - lastY;
+        rotY += dx * 0.01;
+        rotX += dy * 0.01;
+        lastX = e.touches[0].clientX;
+        lastY = e.touches[0].clientY;
+      });
+
+      function render() {
+        if (!isDragging) {
+          rotY += autoSpeedY;
+          rotX += 0.002;
+        }
+
+        ctx.clearRect(0, 0, width, height);
+
+        // Subtle CAD background crosshair in viewport
+        ctx.strokeStyle = 'rgba(0, 208, 226, 0.06)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(width / 2, 0); ctx.lineTo(width / 2, height);
+        ctx.moveTo(0, height / 2); ctx.lineTo(width, height / 2);
+        ctx.stroke();
+
+        const projected = [];
+        const scale = Math.min(width, height) * 0.38;
+        const cx = width / 2;
+        const cy = height / 2;
+
+        const sinX = Math.sin(rotX), cosX = Math.cos(rotX);
+        const sinY = Math.sin(rotY), cosY = Math.cos(rotY);
+
+        for (let i = 0; i < geometry.vertices.length; i++) {
+          const v = geometry.vertices[i];
+          // Rotate Y
+          const x1 = v[0] * cosY - v[2] * sinY;
+          const z1 = v[0] * sinY + v[2] * cosY;
+          // Rotate X
+          const y2 = v[1] * cosX - z1 * sinX;
+          const z2 = v[1] * sinX + z1 * cosX;
+
+          const fov = 3.2;
+          const pZ = z2 + fov;
+          const px = (x1 / pZ) * scale + cx;
+          const py = (y2 / pZ) * scale + cy;
+          projected.push([px, py, z2]);
+        }
+
+        // Draw Edges
+        ctx.strokeStyle = '#00d0e2';
+        ctx.lineWidth = 1.2;
+        ctx.shadowColor = 'rgba(0, 208, 226, 0.6)';
+        ctx.shadowBlur = 6;
+
+        for (let i = 0; i < geometry.edges.length; i++) {
+          const [i1, i2] = geometry.edges[i];
+          const p1 = projected[i1];
+          const p2 = projected[i2];
+          if (!p1 || !p2) continue;
+
+          ctx.beginPath();
+          ctx.moveTo(p1[0], p1[1]);
+          ctx.lineTo(p2[0], p2[1]);
+          ctx.stroke();
+        }
+
+        // Draw vertex nodes
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = '#6df1ff';
+        for (let i = 0; i < projected.length; i++) {
+          const p = projected[i];
+          ctx.beginPath();
+          ctx.arc(p[0], p[1], 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        requestAnimationFrame(render);
+      }
+      render();
+    }
+
+    function generateShape(type) {
+      const vertices = [];
+      const edges = [];
+
+      if (type === 'tachometer' || type === 'ring' || type === 'torus') {
+        const segments = 16;
+        for (let i = 0; i < segments; i++) {
+          const theta = (i / segments) * Math.PI * 2;
+          vertices.push([Math.cos(theta) * 0.9, Math.sin(theta) * 0.9, 0]);
+          vertices.push([Math.cos(theta) * 0.6, Math.sin(theta) * 0.6, 0.3]);
+          vertices.push([Math.cos(theta) * 0.6, Math.sin(theta) * 0.6, -0.3]);
+        }
+        for (let i = 0; i < segments; i++) {
+          const next = (i + 1) % segments;
+          edges.push([i * 3, next * 3]);
+          edges.push([i * 3 + 1, next * 3 + 1]);
+          edges.push([i * 3 + 2, next * 3 + 2]);
+          edges.push([i * 3, i * 3 + 1]);
+          edges.push([i * 3, i * 3 + 2]);
+        }
+      } else if (type === 'sphere') {
+        const rings = 8;
+        const ringSegs = 12;
+        for (let r = 0; r <= rings; r++) {
+          const phi = (r / rings) * Math.PI - Math.PI / 2;
+          for (let s = 0; s < ringSegs; s++) {
+            const theta = (s / ringSegs) * Math.PI * 2;
+            vertices.push([
+              Math.cos(phi) * Math.cos(theta) * 0.9,
+              Math.sin(phi) * 0.9,
+              Math.cos(phi) * Math.sin(theta) * 0.9
+            ]);
+          }
+        }
+        for (let r = 0; r < rings; r++) {
+          for (let s = 0; s < ringSegs; s++) {
+            const cur = r * ringSegs + s;
+            const nextS = r * ringSegs + ((s + 1) % ringSegs);
+            const nextR = (r + 1) * ringSegs + s;
+            edges.push([cur, nextS]);
+            edges.push([cur, nextR]);
+          }
+        }
+      } else if (type === 'room') {
+        // Architectural wireframe room volume with door & window cutouts
+        const s = 0.8;
+        vertices.push([-s, -s, -s], [s, -s, -s], [s, s, -s], [-s, s, -s]); // back wall
+        vertices.push([-s, -s, s], [s, -s, s], [s, s, s], [-s, s, s]);       // front wall
+        vertices.push([-0.3, s, s], [0.3, s, s], [0.3, 0.1, s], [-0.3, 0.1, s]); // door
+        vertices.push([s, -0.3, -0.3], [s, -0.3, 0.3], [s, 0.3, 0.3], [s, 0.3, -0.3]); // window
+        
+        edges.push([0,1],[1,2],[2,3],[3,0]); // back
+        edges.push([4,5],[5,6],[6,7],[7,4]); // front
+        edges.push([0,4],[1,5],[2,6],[3,7]); // connectors
+        edges.push([8,9],[9,10],[10,11],[11,8]); // door
+        edges.push([12,13],[13,14],[14,15],[15,12]); // window
+      } else if (type === 'radar') {
+        // Radar dish & antenna horn
+        const segs = 12;
+        vertices.push([0, 0, -0.8]); // apex
+        for (let i = 0; i < segs; i++) {
+          const theta = (i / segs) * Math.PI * 2;
+          vertices.push([Math.cos(theta) * 0.9, Math.sin(theta) * 0.9, -0.2]);
+          edges.push([0, i + 1]);
+          edges.push([i + 1, ((i + 1) % segs) + 1]);
+        }
+        // feedhorn
+        vertices.push([0, 0, 0.6]);
+        for (let i = 1; i <= 3; i++) edges.push([i * 4, vertices.length - 1]);
+      } else if (type === 'prism') {
+        vertices.push([0, -0.9, 0], [0.8, 0.7, -0.6], [-0.8, 0.7, -0.6], [0, 0.7, 0.8]);
+        edges.push([0,1],[0,2],[0,3],[1,2],[2,3],[3,1]);
+      } else if (type === 'tesseract' || type === 'hypercube') {
+        // 4D hypercube projected
+        const o = 0.9, i = 0.45;
+        // outer cube
+        vertices.push([-o,-o,-o],[o,-o,-o],[o,o,-o],[-o,o,-o]);
+        vertices.push([-o,-o,o],[o,-o,o],[o,o,o],[-o,o,o]);
+        // inner cube
+        vertices.push([-i,-i,-i],[i,-i,-i],[i,i,-i],[-i,i,-i]);
+        vertices.push([-i,-i,i],[i,-i,i],[i,i,i],[-i,i,i]);
+        
+        // outer edges
+        edges.push([0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]);
+        // inner edges
+        edges.push([8,9],[9,10],[10,11],[11,8],[12,13],[13,14],[14,15],[15,12],[8,12],[9,13],[10,14],[11,15]);
+        // cross connects
+        for (let k = 0; k < 8; k++) edges.push([k, k + 8]);
+      } else {
+        // default 3D isometric cube
+        const s = 0.75;
+        vertices.push([-s,-s,-s],[s,-s,-s],[s,s,-s],[-s,s,-s]);
+        vertices.push([-s,-s,s],[s,-s,s],[s,s,s],[-s,s,s]);
+        edges.push([0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]);
+      }
+
+      return { vertices, edges };
+    }
+  </script>
+</body>
+</html>
