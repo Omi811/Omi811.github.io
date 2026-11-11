@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Om Panchal Studio · Evo Edition (4-Slide Decks, 3D Rigs & Escrow)</title>
+  <meta name="description" content="Om Panchal Studio Evo Edition: 4-Slide Explanation Decks for all 7 sovereign repositories, 3D WebGL CAD Rigs, and 50/50 UPI Escrow Docket Terminal.">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..800&family=Hind:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../../apple-ecosystem.css">
+  <style>
+    :root {
+      --evo-bg: #07090e;
+      --evo-card: rgba(13, 17, 28, 0.85);
+      --evo-border: rgba(99, 102, 241, 0.22);
+      --evo-accent: #6366f1;
+      --evo-glow: rgba(99, 102, 241, 0.3);
+      --evo-gold: #f59e0b;
+      --evo-gold-border: rgba(245, 158, 11, 0.35);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--evo-bg);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.16) 0px, transparent 50%),
+        radial-gradient(at 100% 20%, rgba(245, 158, 11, 0.12) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(168, 85, 247, 0.14) 0px, transparent 60%);
+      color: var(--text);
+      font-family: 'Hind', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      line-height: 1.5;
+      padding-top: 52px;
+    }
+
+    .container {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 50px 24px 100px;
+    }
+
+    /* Edition Switcher */
+    .edition-switcher-bar {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    .edition-switcher {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 980px;
+      padding: 4px;
+      gap: 4px;
+      backdrop-filter: blur(16px);
+    }
+    .edition-btn {
+      padding: 8px 22px;
+      border-radius: 980px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #94a3b8;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .edition-btn:hover {
+      color: #fff;
+    }
+    .edition-btn.active {
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(99, 102, 241, 0.35);
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(99, 102, 241, 0.14);
+      border: 1px solid var(--evo-border);
+      padding: 6px 16px;
+      border-radius: 980px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #818cf8;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 18px;
+      letter-spacing: 0.05em;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #ffffff 40%, #c7d2fe 75%, #fbbf24 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.12rem;
+      max-width: 740px;
+      margin: 0 auto 30px;
+      line-height: 1.6;
+    }
+
+    /* Telemetry Bar */
+    .telemetry-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 50px;
+    }
+    .telemetry-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 18px 20px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+    }
+    .telemetry-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #f8fafc;
+      margin-bottom: 4px;
+    }
+    .telemetry-lbl {
+      font-size: 0.74rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Evo Systems List */
+    .systems-container {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      margin-bottom: 60px;
+    }
+    .system-card {
+      background: var(--evo-card);
+      border: 1px solid var(--evo-border);
+      border-radius: 24px;
+      padding: 32px;
+      backdrop-filter: blur(24px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .system-card:hover {
+      border-color: rgba(99, 102, 241, 0.45);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .system-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .system-title-box h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .system-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: #818cf8;
+      background: rgba(99, 102, 241, 0.15);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .system-tagline {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-top: 4px;
+    }
+    .commercial-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    .price-pill {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(217, 119, 6, 0.2));
+      border: 1px solid var(--evo-gold-border);
+      color: #fbbf24;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 6px 14px;
+      border-radius: 980px;
+    }
+    .ticket-label {
+      font-size: 0.72rem;
+      color: #94a3b8;
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* 4-Slide Deck Component */
+    .deck-container {
+      background: #04060a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      overflow: hidden;
+      margin-bottom: 22px;
+    }
+    .deck-tabs {
+      display: flex;
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      overflow-x: auto;
+    }
+    .deck-tab {
+      padding: 12px 18px;
+      font-size: 0.82rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      color: #94a3b8;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+    }
+    .deck-tab:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .deck-tab.active {
+      color: #818cf8;
+      border-bottom-color: #818cf8;
+      background: rgba(99, 102, 241, 0.08);
+    }
+    .deck-slide {
+      display: none;
+      padding: 22px 24px;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+    .deck-slide.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .slide-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      color: #818cf8;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+    .slide-content {
+      color: #e2e8f0;
+    }
+
+    /* Action Links */
+    .system-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .btn-3d {
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      color: #fff;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 980px;
+      text-decoration: none;
+      font-size: 0.86rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-3d:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px var(--evo-glow);
+    }
+    .btn-legacy {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 980px;
+      text-decoration: none;
+      font-size: 0.86rem;
+      transition: all 0.2s;
+    }
+    .btn-legacy:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+    .btn-code {
+      background: transparent;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #c7d2fe;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      padding: 10px 16px;
+      border-radius: 980px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-code:hover {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: #6366f1;
+    }
+
+    /* Escrow Docket Section */
+    .escrow-section {
+      background: linear-gradient(135deg, rgba(24, 18, 9, 0.8) 0%, rgba(13, 17, 28, 0.9) 100%);
+      border: 1px solid var(--evo-gold-border);
+      border-radius: 28px;
+      padding: 40px;
+      margin-top: 40px;
+      backdrop-filter: blur(24px);
+    }
+    .escrow-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+    .escrow-badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: #fbbf24;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid var(--evo-gold-border);
+      padding: 4px 12px;
+      border-radius: 980px;
+      margin-bottom: 12px;
+    }
+    .escrow-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .escrow-sub {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+    .escrow-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+    .escrow-step {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 22px;
+    }
+    .step-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: #fbbf24;
+      margin-bottom: 6px;
+    }
+    .step-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .step-desc {
+      font-size: 0.86rem;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    .upi-box {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px dashed var(--evo-gold-border);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .upi-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fbbf24;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      .telemetry-bar { grid-template-columns: repeat(2, 1fr); }
+      .escrow-grid { grid-template-columns: 1fr; }
+      .system-header { flex-direction: column; align-items: flex-start; }
+      .commercial-badge { align-items: flex-start; margin-top: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Apple Frosted Global Navigation -->
+  <nav class="apple-global-nav" aria-label="Global Navigation">
+    <div class="apple-nav-container">
+      <div class="apple-nav-left">
+        <a href="../../" class="apple-logo-btn" aria-label="Om Panchal Studio Hub"></a>
+        
+        <div class="apple-switcher-toggle" id="appleSwitcherBtn">
+          <span>Ecosystem Switcher</span>
+          <svg class="apple-chevron" viewBox="0 0 10 6">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <div class="apple-flyout" id="appleEcosystemFlyout">
+          <div class="apple-flyout-header">
+            <span>INTERCONNECTED SYSTEM ARCHITECTURE</span>
+            <span class="apple-flyout-badge">● 8 REPOS LIVE</span>
+          </div>
+
+          <div class="apple-flyout-grid">
+            <a href="../../" class="apple-flyout-item theme-hub" data-project="hub">
+              <div class="apple-flyout-icon-box"></div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">Studio Hub</span>
+                <span class="apple-flyout-desc">Master Portfolio Architecture</span>
+              </div>
+            </a>
+
+            <a href="https://omi811.github.io/archstudio-pro/" target="_blank" class="apple-flyout-item theme-archstudio" data-project="archstudio">
+              <div class="apple-flyout-icon-box">🏛️</div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">ArchStudio Pro</span>
+                <span class="apple-flyout-desc">AI Architecture & 3D Spatial</span>
+              </div>
+            </a>
+
+            <a href="../../agentwire/" class="apple-flyout-item theme-agentwire" data-project="agentwire">
+              <div class="apple-flyout-icon-box">⚡</div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">AgentWire</span>
+                <span class="apple-flyout-desc">3,185+ AI & MCP Radar</span>
+              </div>
+            </a>
+
+            <a href="../../omsetra/" class="apple-flyout-item theme-omsetra" data-project="omsetra">
+              <div class="apple-flyout-icon-box">💳</div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">Omsetra</span>
+                <span class="apple-flyout-desc">Fintech Reconciliation</span>
+              </div>
+            </a>
+
+            <a href="../../freellm-hub/" class="apple-flyout-item theme-freellm" data-project="freellm">
+              <div class="apple-flyout-icon-box">🧠</div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">FreeLLM Hub</span>
+                <span class="apple-flyout-desc">Client-Side WebLLM & RAM</span>
+              </div>
+            </a>
+
+            <a href="../../universal-seo/" class="apple-flyout-item theme-seo" data-project="seo">
+              <div class="apple-flyout-icon-box">🔍</div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">Universal SEO</span>
+                <span class="apple-flyout-desc">GEO & AI Search Engine</span>
+              </div>
+            </a>
+
+            <a href="../../rea/" class="apple-flyout-item theme-rea" data-project="rea">
+              <div class="apple-flyout-icon-box">🏗️</div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">REA Ecosystem</span>
+                <span class="apple-flyout-desc">AST Memory & ReUI Components</span>
+              </div>
+            </a>
+
+            <a href="../" class="apple-flyout-item theme-studio is-current" data-project="studio">
+              <div class="apple-flyout-icon-box">⚙️</div>
+              <div class="apple-flyout-text">
+                <span class="apple-flyout-name">Autonomous Studio</span>
+                <span class="apple-flyout-desc">Self-Healing Closed-Loop</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="apple-flyout-footer">
+            <span>Zero Server Bloat • Pure AST Memory</span>
+            <a href="https://github.com/Omi811" target="_blank" rel="noopener noreferrer">GitHub Profile ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="apple-nav-links">
+        <a href="../legacy/" class="apple-nav-link">🏛️ Legacy Studio</a>
+        <a href="#systems" class="apple-nav-link">4-Slide Decks</a>
+        <a href="#escrow" class="apple-nav-link">50/50 Escrow</a>
+        <a href="https://github.com/Omi811/om-panchal-studio" target="_blank" class="apple-nav-link is-pill">Evo Repo ⚡</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- Edition Switcher Bar -->
+    <div class="edition-switcher-bar">
+      <div class="edition-switcher">
+        <a href="../legacy/" class="edition-btn">🏛️ GitHub Legacy Studio</a>
+        <a href="./" class="edition-btn active">⚡ Evo Studio (Interactive)</a>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero-badge">⚡ EXPANDED INTERACTIVE SUITE • 3D RIGS &amp; DECKS</div>
+      <h1>Om Panchal Studio: Evo Edition</h1>
+      <p>
+        4-Slide Explanation Presentation Decks for all 7 sovereign repositories, interactive 3D WebGL CAD Rigs, and 50/50 UPI Escrow Docket Terminal.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+        <a href="https://ais-pre-b4u4dgjeytkafulextdy2y-641552886067.asia-northeast1.run.app/?edition=evo" target="_blank" class="btn-3d" style="font-size: 1rem; padding: 12px 28px;">
+          Launch 3D WebGL Evo Studio ⚡
+        </a>
+        <a href="https://github.com/Omi811/om-panchal-studio" target="_blank" class="btn-legacy" style="font-size: 1rem; padding: 12px 24px;">
+          View om-panchal-studio Repo ↗
+        </a>
+      </div>
+    </header>
+
+    <!-- Verified Telemetry Bar -->
+    <div class="telemetry-bar">
+      <div class="telemetry-card">
+        <div class="telemetry-val" style="color: #fbbf24;">₹1.18 Cr</div>
+        <div class="telemetry-lbl">Portfolio Valuation ($140K)</div>
+      </div>
+      <div class="telemetry-card">
+        <div class="telemetry-val" style="color: #38bdf8;">&lt; 12ms</div>
+        <div class="telemetry-lbl">Average DOM Latency</div>
+      </div>
+      <div class="telemetry-card">
+        <div class="telemetry-val" style="color: #34d399;">100 / 100</div>
+        <div class="telemetry-lbl">Google Lighthouse Mobile</div>
+      </div>
+      <div class="telemetry-card">
+        <div class="telemetry-val" style="color: #a78bfa;">$0.00 / mo</div>
+        <div class="telemetry-lbl">Monthly Cloud Burn Rate</div>
+      </div>
+    </div>
+
+    <!-- Systems 4-Slide Presentation Decks Section -->
+    <section id="systems" class="systems-container">
+
+      <!-- System 01: Speed Sprints & BUILT™ Audit -->
+      <article class="system-card" id="audit-built">
+        <div class="system-header">
+          <div class="system-title-box">
+            <h3><span class="system-num">01</span> Speed Sprints &amp; BUILT™ Audit</h3>
+            <div class="system-tagline">14ms Sovereign mobile rebuild for Vedant Lamba (BUILT™) vs 3.4s Shopify bloat.</div>
+          </div>
+          <div class="commercial-badge">
+            <span class="price-pill">₹20,000 <small style="font-size:0.75rem; color:#fde68a;">($250)</small></span>
+            <span class="ticket-label">48h D2C Sprint • 100/100 Guarantee</span>
+          </div>
+        </div>
+
+        <div class="deck-container">
+          <div class="deck-tabs">
+            <button class="deck-tab active" onclick="switchSlide(this, 'built-s1')">Slide 01 • Teardown</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'built-s2')">Slide 02 • Architecture</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'built-s3')">Slide 03 • Telemetry</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'built-s4')">Slide 04 • Sprint Ticket</button>
+          </div>
+          <div id="built-s1" class="deck-slide active">
+            <div class="slide-eyebrow">Slide 01 • Bottleneck Teardown</div>
+            <p class="slide-content">Identifies 3.4s / 38-score Shopify mobile bloat (64 scripts, 3.8 MB payload) vs. 14ms / 100-score Sovereign rebuild (28 KB total bundle, 0.000 Cumulative Layout Shift).</p>
+          </div>
+          <div id="built-s2" class="deck-slide">
+            <div class="slide-eyebrow">Slide 02 • Architecture Blueprint</div>
+            <p class="slide-content">Edge CDN preload ➔ Inline 14ms Critical CSS ➔ Zero-Hydration Hero DOM ➔ Deferred Analytics & Pixel Queue. Sub-second First Contentful Paint.</p>
+          </div>
+          <div id="built-s3" class="deck-slide">
+            <div class="slide-eyebrow">Slide 03 • Verified Telemetry</div>
+            <p class="slide-content">14ms DOM latency, 100/100 Google Lighthouse Mobile, -94% payload reduction, $0.00/mo server cloud burn.</p>
+          </div>
+          <div id="built-s4" class="deck-slide">
+            <div class="slide-eyebrow">Slide 04 • Commercial Sprint</div>
+            <p class="slide-content">₹20,000 ($250) flat fee per 48-hour D2C sprint. 100/100 Lighthouse score guarantee on mobile or you pay ₹0.</p>
+          </div>
+        </div>
+
+        <div class="system-actions">
+          <a href="https://ais-pre-b4u4dgjeytkafulextdy2y-641552886067.asia-northeast1.run.app/?edition=evo&project=audit-built" target="_blank" class="btn-3d">Launch 3D WebGL Rig ⚡</a>
+          <a href="../../audit-built/" class="btn-legacy">Legacy Live Proof (14ms) ›</a>
+          <a href="https://github.com/Omi811/om-panchal-studio/tree/main/src/components#audit-built" target="_blank" class="btn-code">Evo Module (#audit-built) ↗</a>
+        </div>
+      </article>
+
+      <!-- System 02: AstroBharat Vedic Engine -->
+      <article class="system-card" id="astrobharat">
+        <div class="system-header">
+          <div class="system-title-box">
+            <h3><span class="system-num">02</span> AstroBharat Vedic Engine</h3>
+            <div class="system-tagline">Zero-API Next.js 14 Vedic calculation & Kundli solver with 11ms client math.</div>
+          </div>
+          <div class="commercial-badge">
+            <span class="price-pill">₹85,000 <small style="font-size:0.75rem; color:#fde68a;">($1,000)</small></span>
+            <span class="ticket-label">Turnkey IP Buyout • 50/50 Escrow</span>
+          </div>
+        </div>
+
+        <div class="deck-container">
+          <div class="deck-tabs">
+            <button class="deck-tab active" onclick="switchSlide(this, 'astro-s1')">Slide 01 • Teardown</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'astro-s2')">Slide 02 • Architecture</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'astro-s3')">Slide 03 • Telemetry</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'astro-s4')">Slide 04 • Buyout Ticket</button>
+          </div>
+          <div id="astro-s1" class="deck-slide active">
+            <div class="slide-eyebrow">Slide 01 • Bottleneck Teardown</div>
+            <p class="slide-content">Eliminates ₹50,000–₹2,00,000/month in third-party Kundli API bills (Prokerala/AstrologyAPI) and removes 680ms latency roundtrips.</p>
+          </div>
+          <div id="astro-s2" class="deck-slide">
+            <div class="slide-eyebrow">Slide 02 • Architecture Blueprint</div>
+            <p class="slide-content">Julian Ephemeris Core ➔ Lahiri Ayanamsha (24°11') ➔ 12-House Bhava Solver ➔ North/South Indian SVG Chart Generator rendered natively in browser.</p>
+          </div>
+          <div id="astro-s3" class="deck-slide">
+            <div class="slide-eyebrow">Slide 03 • Verified Telemetry</div>
+            <p class="slide-content">11ms client-side execution, ₹0.00/mo external API cost, &lt; 0.001° Swiss Ephemeris mathematical parity.</p>
+          </div>
+          <div id="astro-s4" class="deck-slide">
+            <div class="slide-eyebrow">Slide 04 • Turnkey IP Buyout</div>
+            <p class="slide-content">₹85,000 ($1,000) lump-sum commercial repository buyout via 50/50 UPI escrow with immediate IP assignment.</p>
+          </div>
+        </div>
+
+        <div class="system-actions">
+          <a href="https://ais-pre-b4u4dgjeytkafulextdy2y-641552886067.asia-northeast1.run.app/?edition=evo&project=astrobharat" target="_blank" class="btn-3d">Launch 3D WebGL Rig ⚡</a>
+          <a href="../../astrobharat/" class="btn-legacy">Legacy Live Engine ›</a>
+          <a href="https://github.com/Omi811/om-panchal-studio/tree/main/src/components#astrobharat" target="_blank" class="btn-code">Evo Module (#astrobharat) ↗</a>
+        </div>
+      </article>
+
+      <!-- System 03: AgentWire Protocol Radar -->
+      <article class="system-card" id="agentwire">
+        <div class="system-header">
+          <div class="system-title-box">
+            <h3><span class="system-num">03</span> AgentWire Protocol Radar</h3>
+            <div class="system-tagline">Curated autonomous agent telemetry & 3,185+ MCP server registry index.</div>
+          </div>
+          <div class="commercial-badge">
+            <span class="price-pill">₹3,800 <small style="font-size:0.75rem; color:#fde68a;">($45)</small></span>
+            <span class="ticket-label">Structured Dataset Export</span>
+          </div>
+        </div>
+
+        <div class="deck-container">
+          <div class="deck-tabs">
+            <button class="deck-tab active" onclick="switchSlide(this, 'wire-s1')">Slide 01 • Teardown</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'wire-s2')">Slide 02 • Architecture</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'wire-s3')">Slide 03 • Telemetry</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'wire-s4')">Slide 04 • Dataset Export</button>
+          </div>
+          <div id="wire-s1" class="deck-slide active">
+            <div class="slide-eyebrow">Slide 01 • Bottleneck Teardown</div>
+            <p class="slide-content">Replaces 4+ hours of manual GitHub hunting across fragmented MCP repos with a 10ms pre-validated autonomous index.</p>
+          </div>
+          <div id="wire-s2" class="deck-slide">
+            <div class="slide-eyebrow">Slide 02 • Architecture Blueprint</div>
+            <p class="slide-content">GitHub Crawler Ingestion ➔ MCP 1.0 Schema Validator ➔ Static Edge Memory Index ➔ 10ms Instant Client Filter.</p>
+          </div>
+          <div id="wire-s3" class="deck-slide">
+            <div class="slide-eyebrow">Slide 03 • Verified Telemetry</div>
+            <p class="slide-content">3,185+ indexed MCP servers, 10ms search latency, JSON-RPC 2.0 compliance, 42.8 MB offline dataset export.</p>
+          </div>
+          <div id="wire-s4" class="deck-slide">
+            <div class="slide-eyebrow">Slide 04 • Dataset Export</div>
+            <p class="slide-content">₹3,800 ($45) instant structured JSON/CSV dataset export & featured protocol registry slots.</p>
+          </div>
+        </div>
+
+        <div class="system-actions">
+          <a href="https://ais-pre-b4u4dgjeytkafulextdy2y-641552886067.asia-northeast1.run.app/?edition=evo&project=agentwire" target="_blank" class="btn-3d">Launch 3D WebGL Rig ⚡</a>
+          <a href="../../agentwire/" class="btn-legacy">Legacy Live Radar (3,185+) ›</a>
+          <a href="https://github.com/Omi811/om-panchal-studio/tree/main/src/components#agentwire" target="_blank" class="btn-code">Evo Module (#agentwire) ↗</a>
+        </div>
+      </article>
+
+      <!-- System 04: Omsetra Financial Ledger -->
+      <article class="system-card" id="omsetra">
+        <div class="system-header">
+          <div class="system-title-box">
+            <h3><span class="system-num">04</span> Omsetra Financial Ledger</h3>
+            <div class="system-tagline">Zero-drift double-entry accounting & 3-way reconciliation for Indian housing societies.</div>
+          </div>
+          <div class="commercial-badge">
+            <span class="price-pill">₹25,000 <small style="font-size:0.75rem; color:#fde68a;">($300)</small></span>
+            <span class="ticket-label">White-Label Enterprise License</span>
+          </div>
+        </div>
+
+        <div class="deck-container">
+          <div class="deck-tabs">
+            <button class="deck-tab active" onclick="switchSlide(this, 'om-s1')">Slide 01 • Teardown</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'om-s2')">Slide 02 • Architecture</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'om-s3')">Slide 03 • Telemetry</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'om-s4')">Slide 04 • License Ticket</button>
+          </div>
+          <div id="om-s1" class="deck-slide active">
+            <div class="slide-eyebrow">Slide 01 • Bottleneck Teardown</div>
+            <p class="slide-content">Ends recurring Tally/cloud SaaS subscription bloat and third-party financial data leaks for Indian housing societies and SMEs.</p>
+          </div>
+          <div id="om-s2" class="deck-slide">
+            <div class="slide-eyebrow">Slide 02 • Architecture Blueprint</div>
+            <p class="slide-content">Voucher Invariant Gate (sumPaise(debits) === sumPaise(credits)) ➔ Society Chart of Accounts ➔ Zero-Drift Trial Balance ➔ Encrypted JSON/PDF Vault.</p>
+          </div>
+          <div id="om-s3" class="deck-slide">
+            <div class="slide-eyebrow">Slide 03 • Verified Telemetry</div>
+            <p class="slide-content">₹0.00 mathematical trial balance drift, 12ms local IndexedDB execution, 100% air-gapped local data sovereignty.</p>
+          </div>
+          <div id="om-s4" class="deck-slide">
+            <div class="slide-eyebrow">Slide 04 • White-Label License</div>
+            <p class="slide-content">₹25,000 ($300) turnkey white-label license for CA practices and co-operative housing societies.</p>
+          </div>
+        </div>
+
+        <div class="system-actions">
+          <a href="https://ais-pre-b4u4dgjeytkafulextdy2y-641552886067.asia-northeast1.run.app/?edition=evo&project=omsetra" target="_blank" class="btn-3d">Launch 3D WebGL Rig ⚡</a>
+          <a href="../../omsetra/" class="btn-legacy">Legacy Live Ledger ›</a>
+          <a href="https://github.com/Omi811/om-panchal-studio/tree/main/src/components#omsetra" target="_blank" class="btn-code">Evo Module (#omsetra) ↗</a>
+        </div>
+      </article>
+
+      <!-- System 05: FreeLLM WebGPU Hub -->
+      <article class="system-card" id="freellm-hub">
+        <div class="system-header">
+          <div class="system-title-box">
+            <h3><span class="system-num">05</span> FreeLLM WebGPU Hub</h3>
+            <div class="system-tagline">In-browser zero-cloud LLM runner (Llama 3, DeepSeek, Qwen) on device GPU RAM.</div>
+          </div>
+          <div class="commercial-badge">
+            <span class="price-pill">₹12,500 <small style="font-size:0.75rem; color:#fde68a;">($150)</small></span>
+            <span class="ticket-label">Turnkey On-Prem Setup</span>
+          </div>
+        </div>
+
+        <div class="deck-container">
+          <div class="deck-tabs">
+            <button class="deck-tab active" onclick="switchSlide(this, 'free-s1')">Slide 01 • Teardown</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'free-s2')">Slide 02 • Architecture</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'free-s3')">Slide 03 • Telemetry</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'free-s4')">Slide 04 • On-Prem Ticket</button>
+          </div>
+          <div id="free-s1" class="deck-slide active">
+            <div class="slide-eyebrow">Slide 01 • Bottleneck Teardown</div>
+            <p class="slide-content">Eliminates cloud data egress and SaaS privacy leaks for law firms, healthcare clinics, and privacy-sensitive engineering teams.</p>
+          </div>
+          <div id="free-s2" class="deck-slide">
+            <div class="slide-eyebrow">Slide 02 • Architecture Blueprint</div>
+            <p class="slide-content">4-Bit Quantized Weights ➔ IndexedDB Persistent Cache ➔ WebGPU WGSL GEMM Shaders ➔ Air-Gapped Local Token Stream.</p>
+          </div>
+          <div id="free-s3" class="deck-slide">
+            <div class="slide-eyebrow">Slide 03 • Verified Telemetry</div>
+            <p class="slide-content">48.6 tok/s local GPU inference, 0.00 KB network egress, $0.00 per-token cloud API bill.</p>
+          </div>
+          <div id="free-s4" class="deck-slide">
+            <div class="slide-eyebrow">Slide 04 • Enterprise On-Prem</div>
+            <p class="slide-content">₹12,500 ($150) turnkey private on-prem browser deployment package for compliant teams.</p>
+          </div>
+        </div>
+
+        <div class="system-actions">
+          <a href="https://ais-pre-b4u4dgjeytkafulextdy2y-641552886067.asia-northeast1.run.app/?edition=evo&project=freellm-hub" target="_blank" class="btn-3d">Launch 3D WebGL Rig ⚡</a>
+          <a href="../../freellm-hub/" class="btn-legacy">Legacy Live Hub ›</a>
+          <a href="https://github.com/Omi811/om-panchal-studio/tree/main/src/components#freellm-hub" target="_blank" class="btn-code">Evo Module (#freellm-hub) ↗</a>
+        </div>
+      </article>
+
+      <!-- System 06: Universal SEO & GEO Suite -->
+      <article class="system-card" id="universal-seo">
+        <div class="system-header">
+          <div class="system-title-box">
+            <h3><span class="system-num">06</span> Universal SEO &amp; GEO Suite</h3>
+            <div class="system-tagline">Generative Engine Optimization (GEO) engineered for Perplexity, ChatGPT, and Gemini citations.</div>
+          </div>
+          <div class="commercial-badge">
+            <span class="price-pill">₹25,000 <small style="font-size:0.75rem; color:#fde68a;">($300)</small></span>
+            <span class="ticket-label">Agency White-Label Suite</span>
+          </div>
+        </div>
+
+        <div class="deck-container">
+          <div class="deck-tabs">
+            <button class="deck-tab active" onclick="switchSlide(this, 'seo-s1')">Slide 01 • Teardown</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'seo-s2')">Slide 02 • Architecture</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'seo-s3')">Slide 03 • Telemetry</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'seo-s4')">Slide 04 • Agency Ticket</button>
+          </div>
+          <div id="seo-s1" class="deck-slide active">
+            <div class="slide-eyebrow">Slide 01 • Bottleneck Teardown</div>
+            <p class="slide-content">Replaces unstructured HTML ignored by AI crawlers with 38 linked JSON-LD entity triples for search engine citation dominance.</p>
+          </div>
+          <div id="seo-s2" class="deck-slide">
+            <div class="slide-eyebrow">Slide 02 • Architecture Blueprint</div>
+            <p class="slide-content">Entity Salience Scanner ➔ 38-Triple JSON-LD Builder ➔ Semantic HTML5 Hierarchy ➔ Perplexity / ChatGPT Search Citation Authority.</p>
+          </div>
+          <div id="seo-s3" class="deck-slide">
+            <div class="slide-eyebrow">Slide 03 • Verified Telemetry</div>
+            <p class="slide-content">99.4% GEO citation probability, 10ms deterministic schema synthesis, 88% agency gross margin.</p>
+          </div>
+          <div id="seo-s4" class="deck-slide">
+            <div class="slide-eyebrow">Slide 04 • Agency White-Label</div>
+            <p class="slide-content">₹25,000 ($300) white-label GEO package & ₹2,500 D2C audit packs for agency syndication.</p>
+          </div>
+        </div>
+
+        <div class="system-actions">
+          <a href="https://ais-pre-b4u4dgjeytkafulextdy2y-641552886067.asia-northeast1.run.app/?edition=evo&project=universal-seo" target="_blank" class="btn-3d">Launch 3D WebGL Rig ⚡</a>
+          <a href="../../universal-seo/" class="btn-legacy">Legacy Live SEO Suite ›</a>
+          <a href="https://github.com/Omi811/om-panchal-studio/tree/main/src/components#universal-seo" target="_blank" class="btn-code">Evo Module (#universal-seo) ↗</a>
+        </div>
+      </article>
+
+      <!-- System 07: REA Developer Ecosystem -->
+      <article class="system-card" id="rea">
+        <div class="system-header">
+          <div class="system-title-box">
+            <h3><span class="system-num">07</span> REA Developer Ecosystem</h3>
+            <div class="system-tagline">AST Code Memory & ReUI compiler layer with sub-5ms lookups and 0 dead dependencies.</div>
+          </div>
+          <div class="commercial-badge">
+            <span class="price-pill">₹12,500 <small style="font-size:0.75rem; color:#fde68a;">($150)</small></span>
+            <span class="ticket-label">Architectural Audit & CLI</span>
+          </div>
+        </div>
+
+        <div class="deck-container">
+          <div class="deck-tabs">
+            <button class="deck-tab active" onclick="switchSlide(this, 'rea-s1')">Slide 01 • Teardown</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'rea-s2')">Slide 02 • Architecture</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'rea-s3')">Slide 03 • Telemetry</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'rea-s4')">Slide 04 • Audit Ticket</button>
+          </div>
+          <div id="rea-s1" class="deck-slide active">
+            <div class="slide-eyebrow">Slide 01 • Bottleneck Teardown</div>
+            <p class="slide-content">Eliminates circular dependencies, dead bundle bloat (-84%), and LLM context window overflow in enterprise repositories.</p>
+          </div>
+          <div id="rea-s2" class="deck-slide">
+            <div class="slide-eyebrow">Slide 02 • Architecture Blueprint</div>
+            <p class="slide-content">TS/React AST Lexer (9ms) ➔ Circular Edge Detector ➔ Ponytail 6-Rung Pruner ➔ Compact LLM Context JSON generator.</p>
+          </div>
+          <div id="rea-s3" class="deck-slide">
+            <div class="slide-eyebrow">Slide 03 • Verified Telemetry</div>
+            <p class="slide-content">9ms AST parse speed, -84% dead bundle reduction, Ponytail Rung 6 zero-dependency discipline.</p>
+          </div>
+          <div id="rea-s4" class="deck-slide">
+            <div class="slide-eyebrow">Slide 04 • CLI & Consulting</div>
+            <p class="slide-content">₹12,500 ($150) architectural audit & REA Developer CLI enterprise license.</p>
+          </div>
+        </div>
+
+        <div class="system-actions">
+          <a href="https://ais-pre-b4u4dgjeytkafulextdy2y-641552886067.asia-northeast1.run.app/?edition=evo&project=rea-ecosystem" target="_blank" class="btn-3d">Launch 3D WebGL Rig ⚡</a>
+          <a href="../../rea/" class="btn-legacy">Legacy Live REA Registry ›</a>
+          <a href="https://github.com/Omi811/om-panchal-studio/tree/main/src/components#rea-ecosystem" target="_blank" class="btn-code">Evo Module (#rea-ecosystem) ↗</a>
+        </div>
+      </article>
+
+      <!-- System 08: ArchGemini Studio (ArchStudio Pro) -->
+      <article class="system-card" id="archstudio" style="border-color: rgba(245, 158, 11, 0.4); background: linear-gradient(135deg, rgba(24, 18, 9, 0.85) 0%, rgba(13, 17, 28, 0.85) 100%);">
+        <div class="system-header">
+          <div class="system-title-box">
+            <h3><span class="system-num" style="color: #fbbf24; background: rgba(245, 158, 11, 0.15);">08</span> ArchGemini Studio (ArchStudio Pro)</h3>
+            <div class="system-tagline">Multimodal Gemini 2.5 Flash architectural consultant: 3D rooms, BOQ & WBS estimation.</div>
+          </div>
+          <div class="commercial-badge">
+            <span class="price-pill" style="border-color: rgba(245, 158, 11, 0.6); color: #fde68a;">FLAGSHIP</span>
+            <span class="ticket-label">Spatial Intelligence CAD</span>
+          </div>
+        </div>
+
+        <div class="deck-container">
+          <div class="deck-tabs">
+            <button class="deck-tab active" onclick="switchSlide(this, 'arch-s1')">Slide 01 • Teardown</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'arch-s2')">Slide 02 • Architecture</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'arch-s3')">Slide 03 • Telemetry</button>
+            <button class="deck-tab" onclick="switchSlide(this, 'arch-s4')">Slide 04 • Deployment</button>
+          </div>
+          <div id="arch-s1" class="deck-slide active">
+            <div class="slide-eyebrow">Slide 01 • Bottleneck Teardown</div>
+            <p class="slide-content">Replaces expensive 3D CAD rendering workstations and 4-hour manual costing turnarounds with instantaneous multimodal AI floor plan analysis.</p>
+          </div>
+          <div id="arch-s2" class="deck-slide">
+            <div class="slide-eyebrow">Slide 02 • Architecture Blueprint</div>
+            <p class="slide-content">Gemini 2.5 Flash Vision ➔ Blueprint CAD Parsing ➔ Three.js 3D Spatial Room Viewport ➔ Real-time Bill of Quantities (BOQ) & Work Breakdown Structure (WBS).</p>
+          </div>
+          <div id="arch-s3" class="deck-slide">
+            <div class="slide-eyebrow">Slide 03 • Verified Telemetry</div>
+            <p class="slide-content">1.4s complete spatial compilation, 100% automated itemized costing, sub-12ms UI interactivity.</p>
+          </div>
+          <div id="arch-s4" class="deck-slide">
+            <div class="slide-eyebrow">Slide 04 • Deployment</div>
+            <p class="slide-content">Deployed live on GitHub Pages with instant client CAD upload and structural material specification.</p>
+          </div>
+        </div>
+
+        <div class="system-actions">
+          <a href="https://omi811.github.io/archstudio-pro/" target="_blank" class="btn-3d" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: #080706; font-weight: 700;">Launch Live ArchStudio Pro 🏛️</a>
+          <a href="https://github.com/Omi811/archstudio-pro" target="_blank" class="btn-legacy">GitHub Repository ↗</a>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- 50/50 UPI Escrow Docket Section -->
+    <section id="escrow" class="escrow-section">
+      <div class="escrow-header">
+        <span class="escrow-badge">⚡ ZERO-RISK SETTLEMENT PROTOCOL</span>
+        <h2 class="escrow-title">50/50 UPI Escrow Docket Terminal</h2>
+        <p class="escrow-sub">
+          Every commercial sprint, white-label license, and repository buyout is protected by milestone escrow. You never pay 100% upfront.
+        </p>
+      </div>
+
+      <div class="escrow-grid">
+        <div class="escrow-step">
+          <div class="step-num">MILESTONE 01</div>
+          <div class="step-title">50% Commitment Escrow</div>
+          <div class="step-desc">Direct UPI transfer to initiate repository scaffolding, live mobile audit, or codebase staging branch.</div>
+        </div>
+        <div class="escrow-step">
+          <div class="step-num">MILESTONE 02</div>
+          <div class="step-title">Verified Audit Proof</div>
+          <div class="step-desc">Delivery of live 100/100 Lighthouse proof, passing CI test suite, and clean AST ledger validation.</div>
+        </div>
+        <div class="escrow-step">
+          <div class="step-num">MILESTONE 03</div>
+          <div class="step-title">Final 50% Settlement</div>
+          <div class="step-desc">Immediate GitHub repository transfer, commercial license assignment, and DNS edge cutover.</div>
+        </div>
+      </div>
+
+      <div class="upi-box">
+        <div>
+          <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 2px;">DOMESTIC INSTANT UPI (0% FEE)</div>
+          <div class="upi-val">8104235964@naviaxis</div>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <a href="../../support.html" class="btn-3d" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: #07090e; font-weight: 700;">
+            Open UPI QR Terminal ⚡
+          </a>
+          <a href="https://www.buymeacoffee.com/panchalom1w" target="_blank" class="btn-legacy">
+            Global Backer Portal (Card/Apple Pay) ↗
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>
+        Om Panchal Studio: Evo Edition • Master Systems Reference • <a href="../legacy/" style="color: #818cf8; text-decoration: none;">View Legacy Studio</a> • Built by <a href="../../" style="color: #f8fafc; font-weight: 600;">Om Panchal</a>.
+      </p>
+    </footer>
+
+  </div>
+
+  <script>
+    function switchSlide(btn, slideId) {
+      const container = btn.closest('.deck-container');
+      container.querySelectorAll('.deck-tab').forEach(t => t.classList.remove('active'));
+      container.querySelectorAll('.deck-slide').forEach(s => s.classList.remove('active'));
+      btn.classList.add('active');
+      const targetSlide = container.querySelector('#' + slideId);
+      if (targetSlide) targetSlide.classList.add('active');
+    }
+
+    // Ecosystem flyout toggle
+    const switcherBtn = document.getElementById('appleSwitcherBtn');
+    const flyout = document.getElementById('appleEcosystemFlyout');
+    if (switcherBtn && flyout) {
+      switcherBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        flyout.classList.toggle('is-open');
+      });
+      document.addEventListener('click', (e) => {
+        if (!flyout.contains(e.target) && !switcherBtn.contains(e.target)) {
+          flyout.classList.remove('is-open');
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
