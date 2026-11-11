@@ -233,6 +233,7 @@ body, p, .apple-section-sub, .bento-desc, .card-desc, .apple-brand, .apple-flyou
 .theme-seo .apple-flyout-icon-box { background: rgba(255, 107, 74, 0.2); color: #ff6b4a; border: 1px solid rgba(255, 107, 74, 0.35); }
 .theme-rea .apple-flyout-icon-box { background: rgba(20, 184, 166, 0.2); color: #2dd4bf; border: 1px solid rgba(20, 184, 166, 0.35); }
 .theme-studio .apple-flyout-icon-box { background: rgba(99, 102, 241, 0.2); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.35); }
+.theme-archstudio .apple-flyout-icon-box { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.35); }
 
 .apple-flyout-text {
   display: flex;
